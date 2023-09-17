@@ -39,12 +39,9 @@ int main(int argc, char* argv[])
 	std::cout << "Command Line:\n";
 	std::cout << "--------------------------\n";
 	// TODO: print the command line here, in the format
-	//   1: first argument
-	//   2: second argument
-	//   3: third argument
-	//   ...
-	// Don't use "magic numbers": https://en.wikipedia.org/wiki/Magic_number_(programming)
-	???
+	for (int i = 1; i < argc; ++i) {
+        std::cout << i << ": " << argv[i] << '\n';
+    }
 	std::cout << "--------------------------\n\n";
 
 	// Keep a record of the *Home* rides separately
