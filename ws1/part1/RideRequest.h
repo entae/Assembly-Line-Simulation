@@ -1,3 +1,8 @@
+// In Tae Chung | 128 958 220
+// itchung@myseneca.ca
+// Sep 17, 2023
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
 #ifndef SDDS_RIDEREQUEST_H
 #define SDDS_RIDEREQUEST_H
 
@@ -8,25 +13,25 @@ namespace sdds {
 
     class RideRequest {
     private:
-        char customerName[11];
-        char rideDescription[26];
+        char CUSTOMER_NAME[11];
+        char RIDE_DESCRIPTION[26];
         double price;
         bool hasDiscount;
 
         static int displayCounter;
 
     public:
-        RideRequest();
+        RideRequest()=default;
 
         void read(std::istream& is);
 
-        void display() const;
+        void display()const;
     };
 
 } // namespace sdds
 
-    // Declare global variables for tax rate and discount as extern
-    extern double g_taxrate;
-    extern double g_discount;
+// Declare global variables for tax rate and discount as extern
+extern double g_taxrate;
+extern double g_discount;
 
 #endif // SDDS_RIDEREQUEST_H
