@@ -5,13 +5,10 @@
 
 #include <iomanip>
 #include "RideRequest.h"
+#include "globals.h"
 
 using namespace std;
 namespace sdds {
-
-    //externed variables
-    double g_discount = 0.0;
-    double g_taxrate = 0.0;
 
     // Implement the read function
     void RideRequest::read(std::istream& is) {

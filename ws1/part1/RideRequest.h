@@ -30,8 +30,4 @@ namespace sdds {
 
 } // namespace sdds
 
-// Declare global variables for tax rate and discount as extern
-extern double g_taxrate;
-extern double g_discount;
-
 #endif // SDDS_RIDEREQUEST_H

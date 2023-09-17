@@ -11,6 +11,7 @@
 #include <iomanip>
 #include <fstream>
 #include "RideRequest.h"
+#include "globals.h"
 
 // Cheching if header guards exist and follow convention.
 #ifndef SDDS_RIDEREQUEST_H
