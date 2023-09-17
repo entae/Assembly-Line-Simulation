@@ -35,9 +35,9 @@ namespace sdds {
             cout << setw(2) << left << ++COUNTER;
             cout << ". " << setw(10) << left << CUSTOMER_NAME;
             cout << "|" << setw(25) << left << RIDE_DESCRIPTION;
-            cout << "|" << fixed << setprecision(2) << setw(12) << left << PRICE_WITH_TAX;
+            cout << "|" << fixed << setprecision(2) << setw(12) << left << PRICE_WITH_TAX << "|";
             if (hasDiscount) {
-                cout << "|" << setw(13) << right << PRICE_WITH_DISCOUNT;
+                cout << setw(13) << right << PRICE_WITH_DISCOUNT;
             }
             cout << endl;
         }
