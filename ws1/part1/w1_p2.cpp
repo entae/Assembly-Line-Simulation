@@ -2,11 +2,6 @@
 // Hina Tariq - 2023/03/06
 // Cornel - 2023/09/08
 
-// In Tae Chung | 128 958 220
-// itchung@myseneca.ca
-// Sep 17, 2023
-// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -39,6 +34,11 @@ int main(int argc, char* argv[])
 	std::cout << "Command Line:\n";
 	std::cout << "--------------------------\n";
 	// TODO: print the command line here, in the format
+	//   1: first argument
+	//   2: second argument
+	//   3: third argument
+	//   ...
+	// Don't use "magic numbers": https://en.wikipedia.org/wiki/Magic_number_(programming)
 	for (int i = 0; i < argc; ++i) {
         std::cout << "  " << i+1 << ": " << argv[i] << '\n';
     }

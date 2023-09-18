@@ -27,16 +27,16 @@ namespace sdds {
     
     void RideRequest::read(std::istream& is) {
         if (is) {
-            //char temp[50]; //temp buffer
-            //is.getline(temp, 11, ',');
-            //strncpy(CUSTOMER_NAME, temp, 10);
-            //CUSTOMER_NAME[10] = '\0';
-            is.getline(CUSTOMER_NAME, 11, ',');
+            char temp[50]; //temp buffer
+            is.getline(temp, 11, ',');
+            strncpy(CUSTOMER_NAME, temp, 10);
+            CUSTOMER_NAME[10] = '\0';
+            // is.getline(CUSTOMER_NAME, 11, ',');
 
-            // is.getline(temp, 26, ',');
-            // strncpy(RIDE_DESCRIPTION, temp, 25);
-            // RIDE_DESCRIPTION[25] = '\0';
-            is.getline(RIDE_DESCRIPTION, 26, ',');
+            is.getline(temp, 26, ',');
+            strncpy(RIDE_DESCRIPTION, temp, 25);
+            RIDE_DESCRIPTION[25] = '\0';
+            // is.getline(RIDE_DESCRIPTION, 26, ',');
 
             is >> m_price;
             //is.ignore(); //skipping comma
@@ -57,16 +57,16 @@ namespace sdds {
             cout << "No Ride Request" << endl;
         }
         else {
-            // double PRICE_WITH_TAX = ( m_price + (m_price * g_taxrate) );
+            double PRICE_WITH_TAX = ( m_price + (m_price * g_taxrate) );
 
-            // double PRICE_WITH_DISCOUNT = ( PRICE_WITH_TAX - (PRICE_WITH_TAX * g_discount) );
             cout << setw(10) << left << CUSTOMER_NAME << '|';
             cout << setw(25) << left << RIDE_DESCRIPTION << '|';
-            cout << fixed << setprecision(2) << setw(12) << left << (m_price + (m_price * g_taxrate)) << "|";
+            cout << fixed << setprecision(2) << setw(12) << left << PRICE_WITH_TAX << "|";
+
             if (m_discount) {
-                double PRICE_WITH_TAX = ( m_price + (m_price * g_taxrate) );
-                PRICE_WITH_TAX = (int)( (PRICE_WITH_TAX + 0.005) * 100 ) / 100.0;
-                cout << setw(13) << right << fixed << setprecision(2) << PRICE_WITH_TAX - (PRICE_WITH_TAX * g_discount);
+                double PRICE_WITH_DISCOUNT = ( PRICE_WITH_TAX - (PRICE_WITH_TAX * g_discount) );
+                // PRICE_WITH_TAX = (int)( (PRICE_WITH_TAX + 0.005) * 100 ) / 100.0;
+                cout << setw(13) << right << fixed << setprecision(2) << PRICE_WITH_DISCOUNT;
             }
             cout << endl;
         }
