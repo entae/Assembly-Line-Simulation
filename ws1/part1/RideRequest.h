@@ -10,10 +10,10 @@ namespace sdds {
 
     class RideRequest {
     private:
-        char CUSTOMER_NAME[11]{};
+        char CUSTOMER_NAME[11];
         char* RIDE_DESCRIPTION{};
-        double m_price{};
-        bool m_discount{};
+        double m_price;
+        bool m_discount;
 
     public:
         //default constructor
