@@ -11,7 +11,7 @@ namespace sdds {
     class RideRequest {
     private:
         char CUSTOMER_NAME[11];
-        char* RIDE_DESCRIPTION[26];
+        char RIDE_DESCRIPTION[26];
         double m_price;
         bool m_discount;
 
