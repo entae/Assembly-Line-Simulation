@@ -26,39 +26,28 @@ namespace sdds {
         delete[] RIDE_DESCRIPTION;
     }
 
-    RideRequest::RideRequest(const RideRequest& other) {
-        if (this != &other) {
-            // Copy CUSTOMER_NAME
-            strncpy(CUSTOMER_NAME, other.CUSTOMER_NAME, 10);
-            CUSTOMER_NAME[10] = '\0';
-
-            // Copy RIDE_DESCRIPTION
-            RIDE_DESCRIPTION = new char[25 + 1];
-            strncpy(RIDE_DESCRIPTION, other.RIDE_DESCRIPTION, 25);
-            RIDE_DESCRIPTION[25] = '\0';
-
-            // Copy other members
-            m_price = other.m_price;
-            m_discount = other.m_discount;
+    RideRequest::RideRequest(const RideRequest& other) : m_price(other.m_price), m_discount(other.m_discount) {
+        // Copy constructor to create a deep copy
+        std::strcpy(CUSTOMER_NAME, other.CUSTOMER_NAME);
+        if (other.RIDE_DESCRIPTION) {
+            RIDE_DESCRIPTION = new char[std::strlen(other.RIDE_DESCRIPTION) + 1];
+            std::strcpy(RIDE_DESCRIPTION, other.RIDE_DESCRIPTION);
+        } else {
+            RIDE_DESCRIPTION = nullptr;
         }
     }
 
     RideRequest& RideRequest::operator=(const RideRequest& other) {
         // Copy assignment operator to assign the state of one object to another
         if (this != &other) {
-            // Copy CUSTOMER_NAME
-            strncpy(CUSTOMER_NAME, other.CUSTOMER_NAME, 10);
-            CUSTOMER_NAME[10] = '\0';
-
-            // Delete the current RIDE_DESCRIPTION if any
+            std::strcpy(CUSTOMER_NAME, other.CUSTOMER_NAME);
             delete[] RIDE_DESCRIPTION;
-
-            // Copy RIDE_DESCRIPTION
-            RIDE_DESCRIPTION = new char[25 + 1];
-            strncpy(RIDE_DESCRIPTION, other.RIDE_DESCRIPTION, 25);
-            RIDE_DESCRIPTION[25] = '\0';
-
-            // Copy other members
+            if (other.RIDE_DESCRIPTION) {
+                RIDE_DESCRIPTION = new char[std::strlen(other.RIDE_DESCRIPTION) + 1];
+                std::strcpy(RIDE_DESCRIPTION, other.RIDE_DESCRIPTION);
+            } else {
+                RIDE_DESCRIPTION = nullptr;
+            }
             m_price = other.m_price;
             m_discount = other.m_discount;
         }
