@@ -6,28 +6,28 @@
 #ifndef SDDS_RIDEREQUEST_H
 #define SDDS_RIDEREQUEST_H
 
-#include <iostream>
-#include <istream>
-
 namespace sdds {
 
     class RideRequest {
     private:
         char CUSTOMER_NAME[11];
-        char RIDE_DESCRIPTION[26];
-        double price;
-        bool hasDiscount;
+        char* RIDE_DESCRIPTION{};
+        double m_price;
+        bool m_discount;
 
         static int displayCounter;
 
     public:
+        //default constructor
         RideRequest()=default;
-
+        ~RideRequest();
         void read(std::istream& is);
-
         void display()const;
     };
 
 } // namespace sdds
+
+extern double g_taxrate;
+extern double g_discount;
 
 #endif // SDDS_RIDEREQUEST_H
