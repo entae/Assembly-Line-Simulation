@@ -26,25 +26,21 @@ namespace sdds {
         delete[] RIDE_DESCRIPTION;
     }
 
+    //copy constructor
     RideRequest::RideRequest(const RideRequest& other) : m_price(other.m_price), m_discount(other.m_discount) {
-        // Copy constructor to create a deep copy
-        std::strcpy(CUSTOMER_NAME, other.CUSTOMER_NAME);
-        if (other.RIDE_DESCRIPTION) {
-            RIDE_DESCRIPTION = new char[std::strlen(other.RIDE_DESCRIPTION) + 1];
-            std::strcpy(RIDE_DESCRIPTION, other.RIDE_DESCRIPTION);
-        } else {
-            RIDE_DESCRIPTION = nullptr;
-        }
+        //implementing copy assignment
+        *this = other;
     }
 
+    //copy assignment
     RideRequest& RideRequest::operator=(const RideRequest& other) {
-        // Copy assignment operator to assign the state of one object to another
         if (this != &other) {
-            std::strcpy(CUSTOMER_NAME, other.CUSTOMER_NAME);
+            std::strncpy(CUSTOMER_NAME, other.CUSTOMER_NAME, strlen(CUSTOMER_NAME));
+            CUSTOMER_NAME[strlen(CUSTOMER_NAME) + 1] = '\0';
             delete[] RIDE_DESCRIPTION;
             if (other.RIDE_DESCRIPTION) {
-                RIDE_DESCRIPTION = new char[std::strlen(other.RIDE_DESCRIPTION) + 1];
-                std::strcpy(RIDE_DESCRIPTION, other.RIDE_DESCRIPTION);
+                RIDE_DESCRIPTION = new char[strlen(other.RIDE_DESCRIPTION) + 1];
+                strcpy(RIDE_DESCRIPTION, other.RIDE_DESCRIPTION);
             } else {
                 RIDE_DESCRIPTION = nullptr;
             }
