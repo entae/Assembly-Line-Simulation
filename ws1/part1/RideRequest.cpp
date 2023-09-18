@@ -62,6 +62,7 @@ namespace sdds {
             delete[] RIDE_DESCRIPTION;
             RIDE_DESCRIPTION = new char[strlen(temp) + 1];
             strcpy(RIDE_DESCRIPTION, temp);
+            is.ignore();
             // is.getline(RIDE_DESCRIPTION, 26, ',');
 
             is >> m_price;
