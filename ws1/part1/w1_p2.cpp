@@ -39,8 +39,8 @@ int main(int argc, char* argv[])
 	std::cout << "Command Line:\n";
 	std::cout << "--------------------------\n";
 	// TODO: print the command line here, in the format
-	for (int i = 1; i < argc; ++i) {
-        std::cout << i << ": " << argv[i] << '\n';
+	for (int i = 0; i < argc; ++i) {
+        std::cout << "  " << i+1 << ": " << argv[i] << '\n';
     }
 	std::cout << "--------------------------\n\n";
 
