@@ -67,16 +67,16 @@ namespace sdds {
 
     void RideRequest::read(std::istream& is) {
         if (is) {
-            //char temp[50]; //temp buffer
+            char temp[50]; //temp buffer
             // is.getline(temp, 11, ',');
             // strncpy(CUSTOMER_NAME, temp, 10);
             // CUSTOMER_NAME[10] = '\0';
             is.getline(CUSTOMER_NAME, 11, ',');
 
-            // is.getline(temp, 50, ',');
-            // strncpy(RIDE_DESCRIPTION, temp, 25);
-            // RIDE_DESCRIPTION[25] = '\0';
-            is.getline(RIDE_DESCRIPTION, 26, ',');
+            is.getline(temp, 50, ',');
+            strncpy(RIDE_DESCRIPTION, temp, 25);
+            RIDE_DESCRIPTION[25] = '\0';
+            // is.getline(RIDE_DESCRIPTION, 26, ',');
 
             is >> m_price;
             //is.ignore(); //skipping comma
