@@ -11,13 +11,17 @@ namespace sdds {
     class RideRequest {
     private:
         char CUSTOMER_NAME[11];
-        char RIDE_DESCRIPTION[26];
+        char* RIDE_DESCRIPTION{};
         double m_price;
         bool m_discount;
 
     public:
         //default constructor
         RideRequest();
+        //rule of three
+        ~RideRequest();
+        RideRequest(const RideRequest& other);
+        RideRequest& operator=(const RideRequest& other);
         void read(std::istream& is);
         void display()const;
     };

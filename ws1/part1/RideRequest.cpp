@@ -17,11 +17,54 @@ namespace sdds {
 
     RideRequest::RideRequest() {
         CUSTOMER_NAME[0] = '\0';
-        RIDE_DESCRIPTION[0] = '\0';
+        RIDE_DESCRIPTION = nullptr;
         m_price = 0.0;
         m_discount = false;
     }
-    
+
+    RideRequest::~RideRequest() {
+        delete[] RIDE_DESCRIPTION;
+    }
+
+    RideRequest::RideRequest(const RideRequest& other) {
+        if (this != &other) {
+            // Copy CUSTOMER_NAME
+            strncpy(CUSTOMER_NAME, other.CUSTOMER_NAME, 10);
+            CUSTOMER_NAME[10] = '\0';
+
+            // Copy RIDE_DESCRIPTION
+            RIDE_DESCRIPTION = new char[25 + 1];
+            strncpy(RIDE_DESCRIPTION, other.RIDE_DESCRIPTION, 25);
+            RIDE_DESCRIPTION[25] = '\0';
+
+            // Copy other members
+            m_price = other.m_price;
+            m_discount = other.m_discount;
+        }
+    }
+
+    RideRequest& RideRequest::operator=(const RideRequest& other) {
+        // Copy assignment operator to assign the state of one object to another
+        if (this != &other) {
+            // Copy CUSTOMER_NAME
+            strncpy(CUSTOMER_NAME, other.CUSTOMER_NAME, 10);
+            CUSTOMER_NAME[10] = '\0';
+
+            // Delete the current RIDE_DESCRIPTION if any
+            delete[] RIDE_DESCRIPTION;
+
+            // Copy RIDE_DESCRIPTION
+            RIDE_DESCRIPTION = new char[25 + 1];
+            strncpy(RIDE_DESCRIPTION, other.RIDE_DESCRIPTION, 25);
+            RIDE_DESCRIPTION[25] = '\0';
+
+            // Copy other members
+            m_price = other.m_price;
+            m_discount = other.m_discount;
+        }
+        return *this;
+    }
+
     void RideRequest::read(std::istream& is) {
         if (is) {
             //char temp[50]; //temp buffer
