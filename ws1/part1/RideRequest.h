@@ -18,7 +18,6 @@ namespace sdds {
     public:
         //default constructor
         RideRequest();
-        ~RideRequest();
         void read(std::istream& is);
         void display()const;
     };

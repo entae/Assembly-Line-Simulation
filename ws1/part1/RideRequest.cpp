@@ -21,10 +21,6 @@ namespace sdds {
         m_price = 0.0;
         m_discount = false;
     }
-
-    RideRequest::~RideRequest() {
-        delete[] RIDE_DESCRIPTION;
-    }
     
     void RideRequest::read(std::istream& is) {
         if (is) {
