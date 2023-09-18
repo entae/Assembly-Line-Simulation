@@ -17,7 +17,7 @@ namespace sdds {
 
     RideRequest::RideRequest() {
         CUSTOMER_NAME[0] = '\0';
-        RIDE_DESCRIPTION = nullptr;
+        RIDE_DESCRIPTION[0] = '\0';
         m_price = 0.0;
         m_discount = false;
     }
