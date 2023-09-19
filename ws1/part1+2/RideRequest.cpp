@@ -35,7 +35,7 @@ namespace sdds {
     //copy assignment
     RideRequest& RideRequest::operator=(const RideRequest& other) {
         if (this != &other) {
-            std::strncpy(CUSTOMER_NAME, other.CUSTOMER_NAME, strlen(CUSTOMER_NAME));
+            strncpy(CUSTOMER_NAME, other.CUSTOMER_NAME, strlen(CUSTOMER_NAME));
             CUSTOMER_NAME[strlen(CUSTOMER_NAME) + 1] = '\0';
             delete[] RIDE_DESCRIPTION;
             if (other.RIDE_DESCRIPTION) {
@@ -52,8 +52,10 @@ namespace sdds {
 
     void RideRequest::read(std::istream& is) {
         if (is) {
-            is.getline(CUSTOMER_NAME, 11, ',');
             char temp[26]; //temp buffer
+            is.getline(temp, 11, ',');
+            strcpy(CUSTOMER_NAME, temp);
+
             is.getline(temp, 26, ',');
             delete[] RIDE_DESCRIPTION;
             RIDE_DESCRIPTION = new char[strlen(temp) + 1];
@@ -61,11 +63,11 @@ namespace sdds {
             // is.getline(RIDE_DESCRIPTION, 26, ',');
 
             is >> m_price;
-            //is.ignore(); //skipping comma
+            is.ignore(); //skipping comma
             char discountStatus;
             is >> discountStatus;
             m_discount = (discountStatus == 'Y');
-            //is.ignore(); //skipping newline
+            is.ignore(); //skipping newline
         }
     }
 
@@ -86,7 +88,7 @@ namespace sdds {
             cout << fixed << setprecision(2) << setw(12) << left << PRICE_WITH_TAX << "|";
 
             if (m_discount) {
-                double PRICE_WITH_DISCOUNT = ( PRICE_WITH_TAX - (PRICE_WITH_TAX * g_discount) );
+                double PRICE_WITH_DISCOUNT = ( PRICE_WITH_TAX - g_discount );
                 // PRICE_WITH_TAX = (int)( (PRICE_WITH_TAX + 0.005) * 100 ) / 100.0;
                 cout << setw(13) << right << fixed << setprecision(2) << PRICE_WITH_DISCOUNT;
             }
