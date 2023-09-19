@@ -50,7 +50,7 @@ namespace sdds {
         return *this;
     }
 
-    void RideRequest::read(std::istream& is) {
+    void RideRequest::read(istream& is) {
         if (is) {
             char temp[26]; //temp buffer
             is.getline(temp, 11, ',');
