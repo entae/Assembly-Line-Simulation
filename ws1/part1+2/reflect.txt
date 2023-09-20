@@ -1,4 +1,6 @@
 In Tae Chung, 128 958 220, itchung
 OOP 345 NBB - ws1
 This workshop was a much needed review on what I'd learned from OOP224..
-After starting on part 2 and working on dynamic memory, 
+After starting on part 2 and working on dynamic memory, I kept running into segmentation faults.
+I thought I had properly created by destructor so it took me some time to remember that I had not satisfied the rule of three. However, for some reason I kept running into errors where the CUSTOMER_NAME was not being displayed properly for many of the lines.
+I kept trying to see if my use of getline() was wrong, but after closely studying the provided main function, realized that all the rides categorized as Office was handled differently. I finally found an error in my assignment operator and resolved the bug.
