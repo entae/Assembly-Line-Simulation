@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <iomanip>
-#include <cstring>
+#include <string>
 #include "RideRequest.h"
 
 //extern variables
@@ -52,11 +52,9 @@ namespace sdds {
 
     void RideRequest::read(istream& is) {
         if (is) {
-            char temp[26]; //temp buffer
-            is.getline(temp, 11, ',');
-            strcpy(CUSTOMER_NAME, temp);
-
-            is.getline(temp, 26, ',');
+            is.getline(CUSTOMER_NAME, 10, ',');
+            char temp[100]; //temp buffer
+            is.getline(temp, 100, ',');
             delete[] RIDE_DESCRIPTION;
             RIDE_DESCRIPTION = new char[strlen(temp) + 1];
             strcpy(RIDE_DESCRIPTION, temp);
@@ -77,7 +75,7 @@ namespace sdds {
 
         cout << setw(2) << left << ++COUNTER << ". ";
 
-        if (CUSTOMER_NAME[0] == '\0') {
+        if (!CUSTOMER_NAME) {
             cout << "No Ride Request" << endl;
         }
         else {

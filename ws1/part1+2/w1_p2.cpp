@@ -44,8 +44,9 @@ int main(int argc, char* argv[])
 	//   3: third argument
 	//   ...
 	// Don't use "magic numbers": https://en.wikipedia.org/wiki/Magic_number_(programming)
-	for (int i = 0; i < argc; ++i) {
-        std::cout << "  " << i+1 << ": " << argv[i] << '\n';
+	static int j = 0;
+	for (j = 0; j < argc; ++j) {
+        std::cout << "  " << j+1 << ": " << argv[j] << '\n';
     }
 	std::cout << "--------------------------\n\n";
 
