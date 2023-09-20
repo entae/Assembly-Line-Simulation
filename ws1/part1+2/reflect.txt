@@ -1,2 +1,4 @@
 In Tae Chung, 128 958 220, itchung
 OOP 345 NBB - ws1
+This workshop was a much needed review on what I'd learned from OOP224..
+After starting on part 2 and working on dynamic memory, 

@@ -35,8 +35,8 @@ namespace sdds {
     //copy assignment
     RideRequest& RideRequest::operator=(const RideRequest& other) {
         if (this != &other) {
-            strncpy(CUSTOMER_NAME, other.CUSTOMER_NAME, strlen(CUSTOMER_NAME));
-            CUSTOMER_NAME[strlen(CUSTOMER_NAME) + 1] = '\0';
+            strncpy(CUSTOMER_NAME, other.CUSTOMER_NAME, strlen(other.CUSTOMER_NAME)+1);
+            CUSTOMER_NAME[strlen(CUSTOMER_NAME)+1] = '\0';
             delete[] RIDE_DESCRIPTION;
             if (other.RIDE_DESCRIPTION) {
                 RIDE_DESCRIPTION = new char[strlen(other.RIDE_DESCRIPTION) + 1];
@@ -75,7 +75,7 @@ namespace sdds {
 
         cout << setw(2) << left << ++COUNTER << ". ";
 
-        if (!CUSTOMER_NAME) {
+        if (CUSTOMER_NAME[0] == '\0') {
             cout << "No Ride Request" << endl;
         }
         else {

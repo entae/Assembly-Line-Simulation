@@ -19,7 +19,7 @@ namespace sdds {
         //default constructor
         RideRequest();
         //rule of three
-        ~RideRequest();
+        virtual ~RideRequest();
         RideRequest(const RideRequest& other);
         RideRequest& operator=(const RideRequest& other);
         void read(std::istream& is);
