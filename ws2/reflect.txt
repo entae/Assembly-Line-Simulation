@@ -1,0 +1,14 @@
+WS1:
+
+Include in your explanation—but do not limit it to—the following points:
+
+the difference between internal and external linkage citing examples from your code
+what are static variables and how are they useful in your solution.
+the changes that you made in upgrading your RideRequest class in part 2.
+
+WS2:
+Include in your explanation—but do not limit it to—the following points:
+
+the reason for the significant time difference between the copy and move operations.
+describe approach taken to read the input file (airport_data.csv) in the AirportLog constructor and populate the dynamic array. Is there any way to avoid rereading the file?
+in the links above to chrono library, you were directed to use a steady_clock to take a timestamp. Do some research and explain the difference between a steady_clock and a system_clock. Are they the same? When should each one be used?
