@@ -8,17 +8,18 @@
 
 #include <chrono>
 
-class Timer {
-private:
-    std::chrono::steady_clock::time_point m_startTime;
-    bool m_running;
+namespace sdds {
+    class Timer {
+        std::chrono::steady_clock::time_point m_startTime;
+        bool m_running;
 
-public:
-    Timer();
-    // Start the timer
-    void start();
-    // Stop the timer and return elapsed time in nanoseconds
-    long long stop();
-};
+    public:
+        Timer();
+        // Start the timer
+        void start();
+        // Stop the timer and return elapsed time in nanoseconds
+        long long stop();
+    };
+}
 
-#endif // !SDDS_TIMER_H
+    #endif // !SDDS_TIMER_H

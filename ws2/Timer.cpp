@@ -5,23 +5,25 @@
 
 #include "Timer.h"
 
-Timer::Timer() : m_startTime(), m_running(false) {}
+namespace sdds{
 
-void Timer::start() {
-    m_startTime = std::chrono::steady_clock::now();
-    m_running = true;
-}
+    Timer::Timer() : m_startTime(), m_running(false) {}
 
-long long Timer::stop() {
-    long long result = 1;
-    if (!m_running) {
-        result = 0; // Timer not started
-    } else {
-        auto endTime = std::chrono::steady_clock::now();
-        auto elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - m_startTime);
-        m_running = false;
-        result = elapsedTime.count();
+    void Timer::start() {
+        m_startTime = std::chrono::steady_clock::now();
+        m_running = true;
     }
 
-    return result;
+    long long Timer::stop() {
+        long long result = 1;
+        if (!m_running) {
+            result = 0; // Timer not started
+        } else {
+            auto endTime = std::chrono::steady_clock::now();
+            auto elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - m_startTime);
+            m_running = false;
+            result = elapsedTime.count();
+        }
+        return result;
+    }
 }
