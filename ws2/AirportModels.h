@@ -17,8 +17,8 @@ namespace sdds {
         std::string m_city{};
         std::string m_state{};
         std::string m_country{};
-        double m_lat{};
-        double m_long{};
+        double m_lat{0.0};
+        double m_long{0.0};
         static std::ostream& formatLabel( std::ostream& os);
         static std::ostream& formatValue( std::ostream& os);
     };
@@ -26,8 +26,8 @@ namespace sdds {
 
     //manages a collection of Airports
     class AirportLog {
-        Airport* m_airports{};    // dynamic array of airports
-        size_t m_count{0};         // num of airports in array
+        Airport* m_airports{};  // dynamic array of airports
+        size_t m_count{0};      // num of airports in array
 
     public:
         AirportLog()=default;
@@ -42,6 +42,7 @@ namespace sdds {
 
         void addAirport( const Airport& A );
         AirportLog findAirport( const char* state, const char* country )const;
+        
         const Airport& operator[]( size_t index )const;
         operator size_t()const;
     };

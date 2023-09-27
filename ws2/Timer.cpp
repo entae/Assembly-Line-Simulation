@@ -5,20 +5,23 @@
 
 #include "Timer.h"
 
-Timer::Timer() : startTime(), running(false) {}
+Timer::Timer() : m_startTime(), m_running(false) {}
 
 void Timer::start() {
-    startTime = std::chrono::steady_clock::now();
-    running = true;
+    m_startTime = std::chrono::steady_clock::now();
+    m_running = true;
 }
 
 long long Timer::stop() {
-    if (!running) {
-        return 0; // Timer not started
+    long long result = 1;
+    if (!m_running) {
+        result = 0; // Timer not started
+    } else {
+        auto endTime = std::chrono::steady_clock::now();
+        auto elapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - m_startTime);
+        m_running = false;
+        result = elapsedTime.count();
     }
 
-    auto endTime = std::chrono::steady_clock::now();
-    running = false;
-
-    return std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime).count();
+    return result;
 }

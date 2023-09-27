@@ -10,8 +10,8 @@
 
 class Timer {
 private:
-    std::chrono::steady_clock::time_point startTime;
-    bool running;
+    std::chrono::steady_clock::time_point m_startTime;
+    bool m_running;
 
 public:
     Timer();

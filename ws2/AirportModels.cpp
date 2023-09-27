@@ -178,15 +178,17 @@ namespace sdds
             if (m_airports[i].m_state == state && m_airports[i].m_country == country) {
             result.addAirport(m_airports[i]);
             }
+            // if(strcmp(m_airports[i].m_state.c_str(), state) == 0 && strcmp(m_airports[i].m_country.c_str(), country) ==0) {
+            //     result.addAirport(m_airports[i]);
+            // }
         }
-        // Assuming you want to modify the current object, return *this.
-        return *this;
+        return result; //*this;
     }
 
 //reduce to one return
     const Airport &AirportLog::operator[](size_t index) const
     {
-        if (index < m_count) {
+        if (index < static_cast<size_t>(m_count)) {
             return m_airports[index];
         } else {
             // Return an empty Airport if the index is not valid
