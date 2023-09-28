@@ -71,6 +71,7 @@ namespace sdds
             getline(file, line);
             while (getline(file, line)) m_count++;
 
+            //points back to the beginning of the file
             file.clear();
             file.seekg(0, std::ios::beg);
 
@@ -137,7 +138,7 @@ namespace sdds
         // m_count = AL.m_count;
         // m_airports = AL.m_airports;
 
-        // // Reset the source object
+        // // Reset received object
         // AL.m_count = 0;
         // AL.m_airports = nullptr;
         *this = std::move(AL);
@@ -151,7 +152,7 @@ namespace sdds
             m_count = AL.m_count;
             m_airports = AL.m_airports;
 
-            // Reset the source object
+            // Reset the received object
             AL.m_count = 0;
             AL.m_airports = nullptr;
         }
@@ -188,13 +189,8 @@ namespace sdds
 //reduce to one return
     const Airport &AirportLog::operator[](size_t index) const
     {
-        if (index < static_cast<size_t>(m_count)) {
-            return m_airports[index];
-        } else {
-            // Return an empty Airport if the index is not valid
-            static Airport emptyAirport;
-            return emptyAirport;
-        }
+        static Airport emptyAirport;
+        return (index < static_cast<size_t>(m_count)) ? m_airports[index] : emptyAirport;
     }
 
     AirportLog::operator size_t() const

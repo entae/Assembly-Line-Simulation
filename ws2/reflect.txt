@@ -1,14 +1,18 @@
-WS1:
+WS1: (did not see the questions to answer for ws1 so I am submitting them late here.)
+1- During the compiler section of the C++ compilation process, internal linkage refers to everything in scope of a translation unit while external linkage refers to things that exist beyond a single translation unit.
+This is more easily understood in the sense of scope where a variable of a file scope has internal linkage only where the variable is used, however the externed variables and static variables I used in my code exist outisde of just the file and have external linkage.
 
-Include in your explanation—but do not limit it to—the following points:
+2- Static variables are a single instance that initialized just once and is called and used throughout the entire span of the function/program. Since they exist between function calls or different instances of a class they can help to preserve data across calls. In ws1, the static  int 'COUNTER' helped to keep track of how many rows of data were being printed throughout the entire program.
 
-the difference between internal and external linkage citing examples from your code
-what are static variables and how are they useful in your solution.
-the changes that you made in upgrading your RideRequest class in part 2.
+3- By having to change the attribute in RideRequest to be dynamically allocated, I had to ensure that the rule of 3 (destructor, copy constructor, and copy allocator) were properly defined within my program to ensure there were no memory leaks. This involved deleting the data originally stored in the address, creating a new address with enough memory to contain the length of the string (and null terminator), transferring the data into the newly allocated memory and making sure the old pointer now points to a null-pointer.
+/********************************************************/
 
 WS2:
-Include in your explanation—but do not limit it to—the following points:
+1- Move operations are much quicker than copy operations since copy operations involve deep copying. Therefore, copy operations require having duplicates of data before deleting the space in memory that is no longer needed. Comparatively, move operations simply change the pointer from pointing to the source object to the wanted object while ensuring all pointers are safely handled. So, move operations require much less memory handling saving the program precious resources (time). So, move operations can be used with temporary nameless objects to help the program run faster instead of having to rely on copy operations for any deep copying.
 
-the reason for the significant time difference between the copy and move operations.
-describe approach taken to read the input file (airport_data.csv) in the AirportLog constructor and populate the dynamic array. Is there any way to avoid rereading the file?
-in the links above to chrono library, you were directed to use a steady_clock to take a timestamp. Do some research and explain the difference between a steady_clock and a system_clock. Are they the same? When should each one be used?
+2- To read the input file in the AirportLog constructor, after validating that the file was opened and accessible, the first header line was ignored before separating and reading the data between each delimiter (',') and then parsing the data back to populate the object array.
+
+If we were to keep a separate array object that was kept for the lifespan of the program. Then every time a file was tried to be read, the filename could first be compared to each unit of the array before ensuring the received file has not been read before.
+
+3- steady_clock is designed to provide with a constant tick regardless of what happens within the system, and is best used for when precise measurements isolated from  the system's time adjustments is needed.
+On the other hand system_clock represents the system's real-time clock which accounts for time zone changes and daylight savings time and is better for working with real-world times, like interacting with timestamps for humans.
