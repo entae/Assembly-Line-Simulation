@@ -1,0 +1,10 @@
+-Both class definitions and implementations of the Collection and OrderedCollection modules must be included on in header file, not in .cpp file. In reflection explain: Why the definitions and implementations in this case should be included in header file? Are there ways to work around and include implementation in .cpp files?
+
+-In reflection, explain why it was necessary for you to add the members that you added into the Book class.
+
+-Public Class Members
+T getSmallestItem(): returns the current smallest item stored in the class attribute.
+T getLargestItem(): returns the current largest item stored in the class attribute.
+🗎 In reflection, explain why these functions cannot be queries, even though they do not change value.
+
+-operator[](): a mutator operator to receive an array index and return corresponding element from m_items array. 🗎 In reflection, discuss if we can make this function a query or not (do an experiment and discuss your results).
