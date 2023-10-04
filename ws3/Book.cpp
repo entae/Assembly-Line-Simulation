@@ -25,7 +25,7 @@ namespace sdds {
             // << ',' << m_numPages << " | (";
 
             double avgPagesPerChapter = static_cast<double>(m_numPages) / m_numChapters;
-            std::string avgField = " | (" + std::to_string(avgPagesPerChapter) + ')';
+            std::string avgField = "  | (" + std::to_string(avgPagesPerChapter) + ')';
             avgField = avgField.substr(1, 15);
 
             os << titleField << avgField << "    ";
