@@ -12,7 +12,7 @@ namespace sdds {
     Book::Book(const std::string& title, unsigned numChapters, unsigned numPages) {};
 
     Book::operator bool()const {
-        return !m_title.empty() && m_numChapters > 0 && m_numPages > 0;
+        return m_title.empty() || m_numChapters == 0 || m_numPages == 0;
     }
 
     std::ostream& Book::print(std::ostream &os)const {
