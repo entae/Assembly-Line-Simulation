@@ -16,7 +16,7 @@ namespace sdds {
     }
 
     std::ostream& Book::print(std::ostream &os)const {
-        if (!this) {
+        if (*this) {
             os << std::right;
             os.width(56);
             os << m_title << ',' << m_numChapters 
