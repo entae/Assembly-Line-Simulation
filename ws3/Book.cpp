@@ -16,9 +16,7 @@ namespace sdds {
     }
 
     std::ostream& Book::print(std::ostream &os)const {
-        if (*this) {
-            os << "| Invalid book data";
-        } else {
+        if (!this) {
             os << std::right;
             os.width(56);
             os << m_title << ',' << m_numChapters 
@@ -27,6 +25,8 @@ namespace sdds {
             double avgPagesPerChapter = static_cast<double>(m_numPages) / m_numChapters;
             os.width(15);
             os << std::left << std::fixed << std::setprecision(6) << avgPagesPerChapter << ")    "; 
+        } else {
+            os << "| Invalid book data";
         }
         return os;
     }
