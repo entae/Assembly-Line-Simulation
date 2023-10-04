@@ -8,7 +8,7 @@
 #include "Book.h"
 
 namespace sdds {
-    Book::Book() : m_title(""), m_numChapters(0), m_numPages(0) {};
+    Book::Book() {};
     Book::Book(const std::string& title, unsigned numChapters, unsigned numPages) {};
 
     Book::operator bool()const {
