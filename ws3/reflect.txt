@@ -1,10 +1,26 @@
 -Both class definitions and implementations of the Collection and OrderedCollection modules must be included on in header file, not in .cpp file. In reflection explain: Why the definitions and implementations in this case should be included in header file? Are there ways to work around and include implementation in .cpp files?
+A:  The Collection and OrderedCollection modules were only included through header files because they are templates. As templates are not explicit code but rather blueprints that the compiler can follow, they only need to be outlined within .h files but not defined within .cpp files.
+Technically, all the types and values that you intended to use with the template could be instantiated, but it would lead to code bloat defeating the purpose of having a template.
 
+------------------------------------------------------------
 -In reflection, explain why it was necessary for you to add the members that you added into the Book class.
+A:  In part1, the bool operator was added to the Book class to easily distinguish if a Book was valid for printing or not.
 
--Public Class Members
-T getSmallestItem(): returns the current smallest item stored in the class attribute.
-T getLargestItem(): returns the current largest item stored in the class attribute.
-🗎 In reflection, explain why these functions cannot be queries, even though they do not change value.
+------------------------------------------------------------
+-In reflection, explain why these functions cannot be queries, even though they do not change value.
+A:  Since static functions belong to the class itself and not the instance of each class, they are shared across all instances of the class. Since queries usually return data specific to each instance, these static functions (although they behave similar to queries) cannot be queries as their return values are for all the instances of the class, and not a singular class.
 
--operator[](): a mutator operator to receive an array index and return corresponding element from m_items array. 🗎 In reflection, discuss if we can make this function a query or not (do an experiment and discuss your results).
+------------------------------------------------------------
+-operator[](): a mutator operator to receive an array index and return corresponding element from m_items array.
+-In reflection, discuss if we can make this function a query or not (do an experiment and discuss your results).
+A:  Whether or not a function can be made into a query depends on the logic of the program. In this workshop, my experiment showed that as the OrderedCollection class uses this mutator operation overload to receive a function, then assign a value to it, it would interfere with the logic of the child class, bringing up errors in the compilation. If the logic did not involve changing the value of the returned value, it would be possible to turn the function into a query. 
+
+------------------------------------------------------------
+What is the reason for defining the class objects outside the class definition?
+A:  In this workshop the objects m_smallestItem and m_largestItem were defined and initialized outside of the class definition as specialized templates. This was done to avoid the one-definition rule of defining a function, and to allow specific cases to behave in alternate ways depending on the types and values the templates were working with.
+
+------------------------------------------------------------
+What is the reason for specializing the definition of m_smallestItem and m_largestItem objects for Book and 10.
+m_smallestItem and m_largestItem objects are also initialized for Book and 72. Is this initilization necessary? Why?
+A:  Initializing a template class for specific conditions allows for customized behaviour for the expected condition. for m_smallestItem and m_largestItem, we wanted to give a very large value and very small value respectively to ensure that the logic in the program would then assign the smallest/largest value to the object after initialization. 
+Although both templates initialized for 'Book and 10' as well as 'Book and 72' contain the same logic, since the behaviour needs to be applied to both conditions, each template needs to exist. However, since both specialization cases are so similar, it may be better to accomodate the behaviour of these templates within the primary template within the class.

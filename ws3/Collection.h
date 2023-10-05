@@ -7,6 +7,7 @@
 #define SDDS_COLLECTION_H
 
 #include <iostream>
+#include <optional>
 #include "Book.h"
 
 namespace sdds {
