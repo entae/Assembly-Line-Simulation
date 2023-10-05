@@ -115,12 +115,12 @@ Book Collection<Book, 72>::m_largestItem("", 10000, 1);
 template<>
 std::ostream& Collection<Book, 10>::print(std::ostream& os)const {
     if (*this) {
-        os << "| " << std::string(74, '-') << '|' << std::endl;
+        os << "| " << std::string(75, '-') << '|' << std::endl;
         for (size_t i = 0; i < m_size; i++) {
             os << "| ";
             m_items[i].print(os) << '|' << std::endl;
         }
-        os << "| " << std::string(74, '-') << '|' << std::endl;
+        os << "| " << std::string(75, '-') << '|' << std::endl;
     }
     return os;
 }
