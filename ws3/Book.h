@@ -31,8 +31,9 @@ namespace sdds {
         // member prototypes that would be necessary for 
         // OrderedCollection module code and tester module 
         // w3_p2.cpp to manage Book-type object. 
-        
-
+        bool operator<(const Book& RO)const;
+        bool operator>(const Book& RO)const;
+        ~Book() = default;
         // Write the implementations of these functions 
         // in Book.cpp file
 

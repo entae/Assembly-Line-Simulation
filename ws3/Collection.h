@@ -37,6 +37,19 @@ protected:
         }
     }
 
+    T& operator[](size_t index) {
+        if (index < m_size) {
+            return m_items[index];
+        }
+        throw std::out_of_range("Index out of range");
+    }
+
+    void incrSize() {
+        if (m_size < C) {
+            m_size++;
+        }
+    }
+
 public:
     Collection() = default;
     ~Collection() = default;
@@ -57,6 +70,10 @@ public:
         return C;
     }
 
+    operator bool()const {
+        return m_size;
+    }
+
     bool operator+=(const T& item) {
         bool added = false;
         if (m_size < C) {
@@ -71,7 +88,7 @@ public:
     std::ostream& print(std::ostream& os)const {
         os << '[';
         for (size_t i = 0; i < m_size - 1; i++) {
-            os << m_items[i] << ',';
+            os << std::setprecision(1) << m_items[i] << ',';
         }
         return os << m_items[m_size - 1 ] << ']' << std::endl;
     }
@@ -85,10 +102,41 @@ template <typename T, unsigned C> // Initialize to -9999
 T Collection<T, C>::m_largestItem = T(-9999);
 
 //specialized definition for T=Book and C=10
-template<> // Corrected values
-Book Collection<Book, 10>::m_smallestItem = Book("", 1, 1);
-template<> // Corrected values
-Book Collection<Book, 10>::m_largestItem = Book("", 1000, 1000);
+template<>
+Book Collection<Book, 10>::m_smallestItem = Book("", 1, 10000);
+template<>
+Book Collection<Book, 10>::m_largestItem = Book("", 10000, 1);
+//specialized definition for T=Book and C=72
+template<>
+Book Collection<Book, 72>::m_smallestItem("", 1, 10000);
+template<>
+Book Collection<Book, 72>::m_largestItem("", 10000, 1);
+
+template<>
+std::ostream& Collection<Book, 10>::print(std::ostream& os)const {
+    if (*this) {
+        os << '|' << std::string(76, '-') << '|' << std::endl;
+        for (size_t i = 0; i < m_size; i++) {
+            os << "| ";
+            m_items[i].print(os) << '|' << std::endl;
+        }
+        os << '|' << std::string(76, '-') << '|' << std::endl;
+    }
+    return os;
+}
+
+template<>
+std::ostream& Collection<Book, 72>::print(std::ostream& os)const {
+    if (*this) {
+        os << '|' << std::string(76, '-') << '|' << std::endl;
+        for (size_t i = 0; i < m_size; i++) {
+            os << "| ";
+            m_items[i].print(os) << '|' << std::endl;
+        }
+        os << '|' << std::string(76, '-') << '|' << std::endl;
+    }
+    return os;
+}
 
 }
 
