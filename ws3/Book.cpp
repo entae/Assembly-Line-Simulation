@@ -30,7 +30,7 @@ namespace sdds {
                 << m_numChapters << ',' 
                 << m_numPages << " | (" 
 
-                << std::fixed << std::setprecision(6) << (double)m_numPages/m_numChapters << ")     ";
+                << std::fixed << std::setprecision(6) << (double)m_numPages/m_numChapters << ")    ";
         } else {
             os << "| Invalid book data";
         }
