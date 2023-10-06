@@ -69,21 +69,21 @@ namespace sdds {
         return (weight <= m_weight) ? *this : empty;
     }
 
-    std::string Cheese::getName()const {
+    auto Cheese::getName()const->std::string {
         return m_name;
     }
-    size_t Cheese::getWeight()const {
+    auto Cheese::getWeight()const->size_t {
         return m_weight;
     }
-    double Cheese::getPrice()const {
+    auto Cheese::getPrice()const->double {
         return m_price;
     }
-    std::string Cheese::getDesc()const {
+    auto Cheese::getDesc()const->std::string {
         return m_desc;
     }
 
     // |[Name;left;w21]|[weight; ;w5]|[price;fixed;precision2;w5]|[desc;right;w34]|\n
-    std::ostream& operator<<(std::ostream& os, const Cheese& chez) {
+    auto operator<<(std::ostream& os, const Cheese& chez)->std::ostream&  {
         os << '|';
         os.width(21);
         os << std::left << chez.getName() << '|';

@@ -37,17 +37,17 @@ namespace sdds {
         Cheese slice(size_t weight); //amount to slice off
 
         //set of queries
-        std::string getName()const;
-        size_t getWeight()const;
-        double getPrice()const;
-        std::string getDesc()const;
+        auto getName()const->std::string;
+        auto getWeight()const->size_t;
+        auto getPrice()const->double;
+        auto getDesc()const->std::string;
 
         //operator bool()const;
     };
 
     //free helper
     // |[Name;left;w21]|[weight; ;w5]|[price;fixed;precision2;w5]|[desc;right;w34]|\n
-    std::ostream& operator<<(std::ostream& os, const Cheese& chez);
+    auto operator<<(std::ostream& os, const Cheese& chez)->std::ostream&;
 
 }
 #endif //!SDDS_CHEESE_H
