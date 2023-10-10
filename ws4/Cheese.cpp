@@ -59,9 +59,9 @@ namespace sdds {
             slicedCheese = *this;
             slicedCheese.m_weight = weight;
             m_weight -= weight;
-        } else {
-            m_weight = 0;
-        }
+        } //else {
+            //m_weight = 0;
+        //}
         return slicedCheese;
     }
 
