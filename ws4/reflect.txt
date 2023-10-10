@@ -1,0 +1,8 @@
+Include in your explanation—but do not limit it to—the following points:
+
+- the difference between the implementations of a composition and an aggregation with reference to the classes used in this workshop. Note that both classes CheeseShop and CheeseParty have an attribute of type const Cheese** and yet they are in different relationships with class Cheese. Discuss!
+
+- the difference between the implementations of move and copy functions in a composition and an aggregation with reference to the classes used in this workshop.
+both CheeseShop and CheeseParty classes have an addCheese function, how do they differ in implementation. Why?
+
+- the CheeseShop class doesn't have a removeCheese function like the CheeseParty does. How would you implement one to keep in line with how CheeseShop handles its cheeses? What else would need to change in the project? Use pseudocode to illustrate your idea.

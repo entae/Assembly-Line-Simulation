@@ -54,19 +54,15 @@ namespace sdds {
     }
 
     Cheese Cheese::slice(size_t weight){
-        // Cheese temp = *this;
-        // if (weight <= temp.m_weight) {
-        //     temp.m_weight -= weight;
-        // } else {
-        //     static Cheese empty;
-        //     temp = empty;
-        // }
-        // return temp;
-        static Cheese empty;
+        Cheese slicedCheese;
         if (weight <= m_weight) {
+            slicedCheese = *this;
+            slicedCheese.m_weight = weight;
             m_weight -= weight;
+        } else {
+            m_weight = 0;
         }
-        return (weight <= m_weight) ? *this : empty;
+        return slicedCheese;
     }
 
     auto Cheese::getName()const->std::string {
