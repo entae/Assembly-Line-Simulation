@@ -40,7 +40,7 @@ namespace sdds {
 
     CheeseShop::CheeseShop(CheeseShop&& chez) {
         // *this = std::move(chez);
-        clear();
+        // clear();
         m_shopName = std::move(chez.m_shopName);
         m_numCheeses = std::move(chez.m_numCheeses);
         m_cheeses = std::move(chez.m_cheeses);
@@ -51,7 +51,7 @@ namespace sdds {
     CheeseShop& CheeseShop::operator=(CheeseShop&& chez) {
         //std::cout << "MOVING!!" << std::endl;
         if (this != &chez) {
-            clear();
+            // clear();
             m_shopName = std::move(chez.m_shopName);
             m_numCheeses = std::move(chez.m_numCheeses);
             m_cheeses = std::move(chez.m_cheeses);
