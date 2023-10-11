@@ -23,7 +23,7 @@ namespace sdds {
     CheeseShop& CheeseShop::operator=(const CheeseShop& chez) {
         //std::cout << "COPYING!" << std::endl;
         if (this != &chez) {
-            //clear();
+            clear();
             m_shopName = chez.m_shopName;
             m_numCheeses = chez.m_numCheeses;
             m_cheeses = new const Cheese*[m_numCheeses];
