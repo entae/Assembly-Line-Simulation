@@ -50,6 +50,7 @@ namespace sdds {
                 index++;
             } else {
                 removed++;
+                //delete m_cheeses[i];
             }
         }
         if (removed > 0) {
