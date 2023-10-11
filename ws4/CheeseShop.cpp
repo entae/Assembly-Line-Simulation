@@ -40,11 +40,12 @@ namespace sdds {
 
     CheeseShop::CheeseShop(CheeseShop&& chez) {
         // *this = std::move(chez);
+        clear();
         m_shopName = std::move(chez.m_shopName);
         m_numCheeses = std::move(chez.m_numCheeses);
         m_cheeses = std::move(chez.m_cheeses);
-        chez.m_numCheeses = 0;
         chez.m_cheeses = nullptr;
+        chez.m_numCheeses = 0;
     }
 
     CheeseShop& CheeseShop::operator=(CheeseShop&& chez) {
@@ -53,11 +54,6 @@ namespace sdds {
             clear();
             m_shopName = std::move(chez.m_shopName);
             m_numCheeses = std::move(chez.m_numCheeses);
-
-            // m_cheeses = new const Cheese*[m_numCheeses];
-            // for (size_t i = 0; i < m_numCheeses; i++) {
-            //     m_cheeses[i] = std::move(chez.m_cheeses[i]);
-            // }
             m_cheeses = std::move(chez.m_cheeses);
             chez.m_cheeses = nullptr;
             chez.m_numCheeses = 0;

@@ -18,7 +18,6 @@ namespace sdds {
         std::string m_desc{}; //features or description of cheese
     public:
         Cheese()=default;
-
         // decipher desc string and initialize as attributes
         // format: Name,Weight,Price,Feature1,Feature2,etc..
         // m_desc: "Hard Sharp Smooth Smelly"

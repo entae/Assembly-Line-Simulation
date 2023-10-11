@@ -26,6 +26,7 @@ namespace sdds {
         CheeseShop& operator=(const CheeseShop& chez);
         //destructor
         virtual ~CheeseShop();
+        //movers
         CheeseShop(CheeseShop&& chez);
         CheeseShop& operator=(CheeseShop&& chez);
 

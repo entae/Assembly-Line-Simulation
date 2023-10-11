@@ -24,7 +24,6 @@ namespace sdds {
             comma = descCpy.find(',');
             m_weight = std::stoul( descCpy.substr( 0, comma ) );
             if (comma != std::string::npos) descCpy.erase( 0, comma+1 );
-            
 
             // m_price
             comma = descCpy.find(',');
