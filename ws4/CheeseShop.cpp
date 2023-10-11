@@ -53,7 +53,7 @@ namespace sdds {
         m_numCheeses = std::move(chez.m_numCheeses);
         m_cheeses = std::move(chez.m_cheeses);
         
-        chez.m_shopName = "No Name";
+        chez.m_shopName = "";
         chez.m_numCheeses = 0;
         chez.m_cheeses = nullptr;
     }
@@ -66,7 +66,7 @@ namespace sdds {
             m_numCheeses = std::move(chez.m_numCheeses);
             m_cheeses = std::move(chez.m_cheeses);
             
-            chez.m_shopName = "No Name";
+            chez.m_shopName = "";
             chez.m_numCheeses = 0;
             chez.m_cheeses = nullptr;
         }

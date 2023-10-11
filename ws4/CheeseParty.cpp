@@ -80,25 +80,8 @@ namespace sdds {
     }
 
     CheeseParty &CheeseParty::addCheese(const Cheese &chez) {
-        bool add = true;
-        for (size_t i = 0; i < m_numCheeses; i++) {
-            if (m_cheeses[i] == &chez) {
-                add = false;
-            }
-        }
-        if (add) {
-            const Cheese** temp = new const Cheese*[m_numCheeses+1];
-            for (size_t i = 0; i < m_numCheeses; i++) {
-                temp[i] = m_cheeses[i];
-            }
-            temp[m_numCheeses++] = &chez;
-            delete[] m_cheeses;
-            m_cheeses = temp;
-        }
-        return *this;
-        /*
         if (!hasCheese(&chez)) {
-            const Cheese** temp = new const Cheese*[m_numCheeses + 1];
+            const Cheese** temp = new const Cheese*[m_numCheeses+1];
             for (size_t i = 0; i < m_numCheeses; i++) {
                 temp[i] = m_cheeses[i];
             }
@@ -108,14 +91,32 @@ namespace sdds {
             m_numCheeses++;
         }
         return *this;
-        */
     }
+
     CheeseParty &CheeseParty::removeCheese() {
+        
+        size_t removed = 0;
+        const Cheese** temp = new const Cheese*[m_numCheeses];
+
         for (size_t i = 0; i < m_numCheeses; i++) {
-            if (m_cheeses[i]->getWeight() == 0.0) {
-                m_cheeses[i] = nullptr;
+            if (m_cheeses[i] && m_cheeses[i]->getWeight() != 0.0) {
+                temp[i - removed] = m_cheeses[i];
+            } else {
+                removed++;
             }
         }
+
+        if (removed > 0) {
+            const Cheese** newCheeses = new const Cheese*[m_numCheeses - removed];
+            for (size_t i = 0; i < m_numCheeses - removed; i++) {
+                newCheeses[i] = temp[i];
+            }
+            delete[] m_cheeses;
+            m_cheeses = newCheeses;
+            m_numCheeses -= removed;
+        }
+
+        delete[] temp;
         return *this;
     }
 
