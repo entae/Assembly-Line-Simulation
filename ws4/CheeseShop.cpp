@@ -71,8 +71,10 @@ namespace sdds {
 
             clear();
             m_shopName = std::move(chez.m_shopName);
-            m_cheeses = std::exchange(chez.m_cheeses, nullptr);
-            m_numCheeses = std::exchange(chez.m_numCheeses, 0);
+            m_cheeses = std::move(chez.m_cheeses);
+            chez.m_cheeses = nullptr;
+            m_numCheeses = std::move(chez.m_numCheeses);
+            chez.m_numCheeses = 0;
 
             // for (size_t i = 0; i < m_numCheeses; i++) {
             //     delete m_cheeses[i];
