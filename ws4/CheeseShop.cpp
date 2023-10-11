@@ -12,7 +12,7 @@ namespace sdds {
 
     CheeseShop::CheeseShop(const CheeseShop &chez) {
         // *this = chez;
-        clear();
+        // clear();
         m_shopName = chez.m_shopName;
         m_numCheeses = chez.m_numCheeses;
         m_cheeses = new const Cheese*[m_numCheeses];
