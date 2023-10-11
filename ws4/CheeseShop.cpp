@@ -11,13 +11,13 @@ namespace sdds {
         m_shopName(name), m_cheeses(nullptr), m_numCheeses(0) {}
 
     CheeseShop::CheeseShop(const CheeseShop &chez) {
-        *this = chez;
-        // m_shopName = chez.m_shopName;
-        // m_numCheeses = chez.m_numCheeses;
-        // m_cheeses = new const Cheese*[m_numCheeses];
-        // for (size_t i = 0; i < m_numCheeses; i++) {
-        //     m_cheeses[i] = new Cheese(*(chez.m_cheeses[i]));
-        // }
+        // *this = chez;
+        m_shopName = chez.m_shopName;
+        m_numCheeses = chez.m_numCheeses;
+        m_cheeses = new const Cheese*[m_numCheeses];
+        for (size_t i = 0; i < m_numCheeses; i++) {
+            m_cheeses[i] = new Cheese(*(chez.m_cheeses[i]));
+        }
     }
 
     CheeseShop& CheeseShop::operator=(const CheeseShop& chez) {
