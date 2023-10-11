@@ -55,9 +55,9 @@ namespace sdds {
             m_numCheeses = std::move(chez.m_numCheeses);
             m_cheeses = std::move(chez.m_cheeses);
 
-            for (size_t i = 0; i < m_numCheeses; i++) {
-                chez.m_cheeses[i] = nullptr;
-            }
+            // for (size_t i = 0; i < m_numCheeses; i++) {
+            //     chez.m_cheeses[i] = nullptr;
+            // }
 
             chez.m_numCheeses = 0;
             chez.m_cheeses = nullptr;
