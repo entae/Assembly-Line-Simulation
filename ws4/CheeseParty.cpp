@@ -1,6 +1,6 @@
 // In Tae Chung | 128 958 220
 // itchung@myseneca.ca
-// Oct 1, 2023
+// Oct 11, 2023
 // I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 
 #include "CheeseParty.h"
@@ -27,7 +27,8 @@ namespace sdds {
     }
 
     CheeseParty::~CheeseParty() {
-        clear();
+        delete[] m_cheeses;
+        m_cheeses = nullptr;
     }
 
     CheeseParty::CheeseParty(const CheeseParty& party) {
@@ -45,10 +46,8 @@ namespace sdds {
         if (this != &party) {
             clear();
             m_numCheeses = party.m_numCheeses;
-
             if (m_numCheeses > 0) {
                 m_cheeses = new const Cheese*[m_numCheeses];
-
                 for (size_t i = 0; i < m_numCheeses; i++) {
                     m_cheeses[i] = new Cheese(*(party.m_cheeses[i]));
                 }
