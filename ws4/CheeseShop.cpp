@@ -16,7 +16,7 @@ namespace sdds {
         m_numCheeses = chez.m_numCheeses;
         m_cheeses = new const Cheese*[m_numCheeses];
         for (size_t i = 0; i < m_numCheeses; i++) {
-            m_cheeses[i] = new Cheese(*(chez.m_cheeses[i]));
+            m_cheeses[i] = chez.m_cheeses[i];
         }
     }
 
@@ -28,7 +28,7 @@ namespace sdds {
             m_numCheeses = chez.m_numCheeses;
             m_cheeses = new const Cheese*[m_numCheeses];
             for (size_t i = 0; i < m_numCheeses; i++) {
-                m_cheeses[i] = new Cheese(*(chez.m_cheeses[i]));
+                m_cheeses[i] = chez.m_cheeses[i];
             }
         }
         return *this;
