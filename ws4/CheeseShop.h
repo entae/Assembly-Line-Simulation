@@ -28,8 +28,8 @@ namespace sdds {
         //destructor
         virtual ~CheeseShop();
         //movers
-        CheeseShop(CheeseShop&& chez)noexcept;
-        CheeseShop& operator=(CheeseShop&& chez)noexcept;
+        CheeseShop(CheeseShop&& chez);
+        CheeseShop& operator=(CheeseShop&& chez);
 
         //clears DMA
         void clear();

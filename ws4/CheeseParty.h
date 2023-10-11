@@ -21,6 +21,12 @@ namespace sdds {
         void clear();
     public:
         CheeseParty()=default;
+        virtual ~CheeseParty();
+        CheeseParty(const CheeseParty& party);
+        CheeseParty operator=(const CheeseParty& party);
+        CheeseParty(CheeseParty&& party);
+        CheeseParty operator=(CheeseParty&& party);
+
         CheeseParty& addCheese(const Cheese& chez);
         CheeseParty& removeCheese();
     

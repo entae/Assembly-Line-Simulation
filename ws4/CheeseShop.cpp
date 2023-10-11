@@ -11,14 +11,16 @@ namespace sdds {
         m_shopName(name), m_cheeses(nullptr), m_numCheeses(0) {}
 
     CheeseShop::CheeseShop(const CheeseShop& chez) {
-        *this = chez;
+        m_shopName = chez.m_shopName;
+        m_cheeses = nullptr;
+        m_numCheeses = chez.m_numCheeses;
 
-        // m_shopName = "";
-        // m_shopName = chez.m_shopName;
-        // m_numCheeses = chez.m_numCheeses;
-        // m_cheeses = new const Cheese*[m_numCheeses];
-        // for (size_t i = 0; i < m_numCheeses; i++) {
-        //     m_cheeses[i] = new Cheese(*(chez.m_cheeses[i]));
+        if (chez.m_numCheeses > 0) {
+            m_cheeses = new const Cheese*[chez.m_numCheeses];
+            for (size_t i = 0; i < chez.m_numCheeses; i++) {
+                m_cheeses[i] = new Cheese(*(chez.m_cheeses[i]));
+            }
+        }
     }
 
     CheeseShop& CheeseShop::operator=(const CheeseShop& chez) {
@@ -37,15 +39,6 @@ namespace sdds {
                     m_cheeses[i] = new Cheese(*(chez.m_cheeses[i]));
                 }
             }
-            // const Cheese** temp = new const Cheese* [chez.m_numCheeses];
-
-            // for (size_t i = 0; i < chez.m_numCheeses; i++) {
-            //     temp[i] = chez.m_cheeses[i];
-            // }
-            // delete[] m_cheeses;
-            // temp = m_cheeses;
-            // m_shopName = chez.m_shopName;
-            // m_numCheeses = chez.m_numCheeses;
         }
         return *this;
     }
@@ -54,47 +47,28 @@ namespace sdds {
         clear();
     }
 
-    CheeseShop::CheeseShop(CheeseShop&& chez)noexcept {
-        *this = std::move(chez);
-
-        // m_shopName = std::move(chez.m_shopName);
-        // m_numCheeses = std::move(chez.m_numCheeses);
-        // m_cheeses = std::move(chez.m_cheeses);
-
-        // chez.m_cheeses = nullptr;
-        // chez.m_numCheeses = 0;
+    CheeseShop::CheeseShop(CheeseShop&& chez) {
+        clear();
+        m_shopName = std::move(chez.m_shopName);
+        m_numCheeses = std::move(chez.m_numCheeses);
+        m_cheeses = std::move(chez.m_cheeses);
+        
+        chez.m_shopName = "No Name";
+        chez.m_numCheeses = 0;
+        chez.m_cheeses = nullptr;
     }
 
-    CheeseShop& CheeseShop::operator=(CheeseShop&& chez)noexcept {
+    CheeseShop& CheeseShop::operator=(CheeseShop&& chez) {
         //std::cout << "MOVING!!" << std::endl;
         if (this != &chez) {
-
             clear();
             m_shopName = std::move(chez.m_shopName);
-            m_cheeses = std::move(chez.m_cheeses);
-            chez.m_cheeses = nullptr;
             m_numCheeses = std::move(chez.m_numCheeses);
+            m_cheeses = std::move(chez.m_cheeses);
+            
+            chez.m_shopName = "No Name";
             chez.m_numCheeses = 0;
-
-            // for (size_t i = 0; i < m_numCheeses; i++) {
-            //     delete m_cheeses[i];
-            // }
-            // delete[] m_cheeses;
-
-            // m_shopName = std::move(chez.m_shopName);
-            // m_numCheeses = std::move(chez.m_numCheeses);
-            // m_cheeses = std::move(chez.m_cheeses);
-
-            // chez.m_cheeses = nullptr;
-            // chez.m_numCheeses = 0;
-
-            // delete[] m_cheeses;
-            // m_cheeses = nullptr;
-
-            // m_cheeses = chez.m_cheeses;
-            // m_numCheeses = chez.m_numCheeses;
-            // m_shopName = std::move(chez.m_shopName);
-            // chez.clear();
+            chez.m_cheeses = nullptr;
         }
         return *this;
     }
