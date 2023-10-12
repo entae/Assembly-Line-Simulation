@@ -17,6 +17,7 @@ namespace sdds {
     }
     
     void CheeseShop::copyFrom(const CheeseShop& chez) {
+        m_shopName = chez.m_shopName;
         m_cheeses = new const Cheese*[chez.m_numCheeses];
         for (size_t i = 0; i < chez.m_numCheeses; ++i) {
             m_cheeses[i] = new Cheese(*(chez.m_cheeses[i]));
