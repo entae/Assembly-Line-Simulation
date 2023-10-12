@@ -1,8 +1,32 @@
-Include in your explanation—but do not limit it to—the following points:
-
 - the difference between the implementations of a composition and an aggregation with reference to the classes used in this workshop. Note that both classes CheeseShop and CheeseParty have an attribute of type const Cheese** and yet they are in different relationships with class Cheese. Discuss!
+
+A: Composition is much more closely linked to the objects that it is made up of. The CheeseShop class owns and manages its objects, and a CheeseShop in our definition is not a valid CheeseShop if it does not have any Cheese.
+However, for a aggregation like CheeseParty, it simply references and uses the Cheese object as a part of the class but does not directly change manages the Cheese.
+
+********************************************************
 
 - the difference between the implementations of move and copy functions in a composition and an aggregation with reference to the classes used in this workshop.
 both CheeseShop and CheeseParty classes have an addCheese function, how do they differ in implementation. Why?
 
+A: For CheeseShop, since it is a composition and is more closely linked to the Cheese object compared to the aggregate CheeseParty, CheeseShop needs a deep copy of the Cheese objects. 
+As for the move methods, the ownership of the Cheese objects can be achieved by simply copying the pointers to the CheeseShop items as CheeseShop is able to own the Cheese objects.
+
+For CheeseParty, since this is an aggregation and therefore does not own the Cheese object, it simply references them. The copy copies the pointers to the same objects but does not create new Cheese objects (CheeseParty and Cheese shares the same addresses in memory) 
+As for the move methods, rather than transfering the Cheese objects themselves, the ownership of the pointers is moved from the CheeseParty to another CheeseParty.
+
+The CheeseShop::addCheese creates a deep copy of the Cheese object and stores it within the CheeseShop.
+Whereas the CheeseParty::addCheese stores a reference of the existing external Cheese object.
+
+********************************************************
+
 - the CheeseShop class doesn't have a removeCheese function like the CheeseParty does. How would you implement one to keep in line with how CheeseShop handles its cheeses? What else would need to change in the project? Use pseudocode to illustrate your idea.
+
+A: the logic for a CheeseShop::removeCheese function may be similar to the addCheese function.
+- create a temp array to store valid Cheese pointers
+- goes through the original array and checks the weight of each cheese
+- all valid cheeses (weight > 0) get their pointers copied to the temp array
+- delete the old array
+- create a new array with an appropriate size based on the number of valid cheeses
+- copy the valid pointers from the temp array to the new array
+- update the number of objects in the array
+- delete the temp array
