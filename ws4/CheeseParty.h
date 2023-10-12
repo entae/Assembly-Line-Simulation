@@ -14,25 +14,28 @@ namespace sdds {
 
     //manages array of pointers but no the life of Cheese objects
     class CheeseParty {
-        const Cheese** m_cheeses{};
-        size_t m_numCheeses{};
+        const Cheese** m_cheeses{nullptr};
+        size_t m_numCheeses{0};
 
-        bool hasCheese(const Cheese* chez)const;
         void clear();
+        void copyFrom(const CheeseParty& party);
+        bool hasCheese(const Cheese& chez);
     public:
         CheeseParty()=default;
         virtual ~CheeseParty();
+        //copy
         CheeseParty(const CheeseParty& party);
         CheeseParty operator=(const CheeseParty& party);
+        //move
         CheeseParty(CheeseParty&& party);
         CheeseParty operator=(CheeseParty&& party);
 
         CheeseParty& addCheese(const Cheese& chez);
         CheeseParty& removeCheese();
     
-        std::ostream& display(std::ostream &os)const;
+        friend std::ostream& operator<<(std::ostream &os, const CheeseParty& party);
     };
-    auto operator<<(std::ostream &os, CheeseParty& party) ->std::ostream&;
+
 }
 
 #endif //!SDDS_CHEESEPARTY_H

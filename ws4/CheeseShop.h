@@ -13,32 +13,32 @@
 namespace sdds {
 
     //this class is responsible for managing both the array and the Cheese objects
-    class CheeseShop {
+    class CheeseShop : public Cheese {
        std::string m_shopName {"No Name"};
        const Cheese** m_cheeses {};
        size_t m_numCheeses {};
+
+       void clear();
+       void copyFrom(const CheeseShop& other);
     public:
         CheeseShop(const std::string& name = "No Name");
-        // CheeseShop()=default;
+        
+        //destructor
+        virtual ~CheeseShop();
 
         //copy constructor;
         CheeseShop(const CheeseShop& chez);
         //assignment op
         CheeseShop& operator=(const CheeseShop& chez);
-        //destructor
-        virtual ~CheeseShop();
+        
         //movers
         CheeseShop(CheeseShop&& chez);
         CheeseShop& operator=(CheeseShop&& chez);
 
-        //clears DMA
-        void clear();
         CheeseShop& addCheese(const Cheese& chez);
 
-        std::ostream& display(std::ostream& os)const;
+        friend std::ostream& operator<<(std::ostream& os, const CheeseShop& shop);
     };
-    // Helper
-    auto operator<<(std::ostream& os, CheeseShop& shop)-> std::ostream&; 
 
 }
 

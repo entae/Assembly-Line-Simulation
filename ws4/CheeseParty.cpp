@@ -7,66 +7,56 @@
 
 namespace sdds {
 
-    bool CheeseParty::hasCheese(const Cheese *chez) const {
-        bool exists = false;
-        for (size_t i = 0; i < m_numCheeses; i++) {
-            if (m_cheeses[i] == chez) {
-                exists = true;
-            }
-        }
-        return exists;
-    }
-
     void CheeseParty::clear() {
-        for (size_t i = 0; i < m_numCheeses; i++) {
-            delete m_cheeses[i];
-        }
         delete[] m_cheeses;
         m_cheeses = nullptr;
         m_numCheeses = 0;
     }
 
-    CheeseParty::~CheeseParty() {
-        delete[] m_cheeses;
-        m_cheeses = nullptr;
+    void CheeseParty::copyFrom(const CheeseParty& party) {
+        m_cheeses = new const Cheese*[party.m_numCheeses];
+        for (size_t i = 0; i < party.m_numCheeses; ++i) {
+            m_cheeses[i] = party.m_cheeses[i];
+        }
+        m_numCheeses = party.m_numCheeses;
     }
 
-    CheeseParty::CheeseParty(const CheeseParty& party) {
-        m_numCheeses = party.m_numCheeses;
-        m_cheeses = nullptr;
-        if (party.m_numCheeses > 0) {
-            m_cheeses = new const Cheese*[party.m_numCheeses];
-            for (size_t i = 0; i < party.m_numCheeses; i++) {
-                m_cheeses[i] = new Cheese(*(party.m_cheeses[i]));        
+    bool CheeseParty::hasCheese(const Cheese& chez) {
+        bool has = false;
+        for (size_t i = 0; i < m_numCheeses; ++i) {
+            if (m_cheeses[i] == &chez) {
+                has = true;
             }
         }
+        return has;
+    }
+
+    CheeseParty::~CheeseParty() {
+        clear();
+    }
+
+    CheeseParty::CheeseParty(const CheeseParty& party) :
+        m_cheeses(nullptr), m_numCheeses(0) {
+        copyFrom(party);
     }
 
     CheeseParty CheeseParty::operator=(const CheeseParty& party) {
         if (this != &party) {
             clear();
-            m_numCheeses = party.m_numCheeses;
-            if (m_numCheeses > 0) {
-                m_cheeses = new const Cheese*[m_numCheeses];
-                for (size_t i = 0; i < m_numCheeses; i++) {
-                    m_cheeses[i] = new Cheese(*(party.m_cheeses[i]));
-                }
-            }
+            copyFrom(party);
         }
         return *this;
     }
 
-    CheeseParty::CheeseParty(CheeseParty&& party) {
-        clear();
-        m_numCheeses = std::move(party.m_numCheeses);
-        m_cheeses = std::move(party.m_cheeses);
-
-        party.m_numCheeses = 0;
-        party.m_cheeses = nullptr;
+    CheeseParty::CheeseParty(CheeseParty&& party):
+        m_cheeses(party.m_cheeses), m_numCheeses(party.m_numCheeses) {
+            party.m_cheeses = nullptr;
+            party.m_numCheeses = 0;
     }
 
     CheeseParty CheeseParty::operator=(CheeseParty&& party) {
         if (this != &party) {
+
             clear();
 
             m_numCheeses = std::move(party.m_numCheeses);
@@ -79,9 +69,9 @@ namespace sdds {
     }
 
     CheeseParty &CheeseParty::addCheese(const Cheese &chez) {
-        if (!hasCheese(&chez)) {
+        if (!hasCheese(chez)) {
             const Cheese** temp = new const Cheese*[m_numCheeses+1];
-            for (size_t i = 0; i < m_numCheeses; i++) {
+            for (size_t i = 0; i < m_numCheeses; ++i) {
                 temp[i] = m_cheeses[i];
             }
             temp[m_numCheeses] = &chez;
@@ -93,42 +83,24 @@ namespace sdds {
     }
 
     CheeseParty &CheeseParty::removeCheese() {
-        
-        size_t removed = 0;
-        const Cheese** temp = new const Cheese*[m_numCheeses];
-
-        for (size_t i = 0; i < m_numCheeses; i++) {
-            if (m_cheeses[i] && m_cheeses[i]->getWeight() != 0.0) {
-                temp[i - removed] = m_cheeses[i];
-            } else {
-                removed++;
+        for (size_t i = 0; i < m_numCheeses; ++i) {
+            if (m_cheeses[i] && m_cheeses[i]->getWeight() == 0) {
+                m_cheeses[i] = nullptr;
             }
         }
-
-        if (removed > 0) {
-            const Cheese** newCheeses = new const Cheese*[m_numCheeses - removed];
-            for (size_t i = 0; i < m_numCheeses - removed; i++) {
-                newCheeses[i] = temp[i];
-            }
-            delete[] m_cheeses;
-            m_cheeses = newCheeses;
-            m_numCheeses -= removed;
-        }
-
-        delete[] temp;
         return *this;
     }
 
-    std::ostream& CheeseParty::display(std::ostream& os)const {
+    std::ostream& operator<<(std::ostream &os, const CheeseParty& party) {
         os << "--------------------------" << std::endl;
         os << "Cheese Party" << std::endl;
         os << "--------------------------" << std::endl;
-        if (m_numCheeses == 0) {
+        if (party.m_numCheeses == 0) {
             os << "This party is just getting started!" << std::endl;
         } else {
-            for (size_t i = 0; i < m_numCheeses; i++) {
-                if (m_cheeses[i]) {
-                    os << *(m_cheeses[i]);
+            for (size_t i = 0; i < party.m_numCheeses; ++i) {
+                if (party.m_cheeses[i]) {
+                    os << *(party.m_cheeses[i]);
                 }
             }
         }
@@ -136,7 +108,4 @@ namespace sdds {
         return os;
     }
 
-    auto operator<<(std::ostream& os, CheeseParty& party) ->std::ostream& {
-        return party.display(os);
-    }
 }

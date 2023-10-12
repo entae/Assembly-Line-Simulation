@@ -13,9 +13,9 @@ namespace sdds {
     //block of cheese that can be sliced into smaller cheeses
     class Cheese {
         std::string m_name{ "NaC" }; //defaults to NaC "Not a Cheese"
-        size_t m_weight{};//in grams
-        double m_price{}; //price per gram
-        std::string m_desc{}; //features or description of cheese
+        size_t m_weight{0};//in grams
+        double m_price{0}; //price per gram
+        std::string m_desc{""}; //features or description of cheese
     public:
         Cheese()=default;
         // decipher desc string and initialize as attributes

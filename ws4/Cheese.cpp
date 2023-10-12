@@ -50,10 +50,10 @@ namespace sdds {
             m_desc = descCpy.substr( 0, descCpy.length() );
 
         } else {
-            m_name = nullptr;
+            m_name = "";
             m_weight = 0;
             m_price = 0.0;
-            m_desc = nullptr;
+            m_desc = "";
         }
     }
 
