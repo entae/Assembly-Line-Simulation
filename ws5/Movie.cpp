@@ -11,27 +11,39 @@
 namespace sdds {
 
     Movie::Movie(const std::string& strMovie) {
-        size_t pos1 = strMovie.find(',');
-        size_t pos2 = strMovie.find(',', pos1 + 1);
-        // size_t pos3 = strMovie.find(',', pos2 + 1);
-
-        m_title = trimSpaces(strMovie.substr(0, pos1));
-        m_year = std::stoi(strMovie.substr(pos1 + 2, pos2 - pos1 - 2));
-        m_desc = trimSpaces(strMovie.substr(pos2 + 1));
+        size_t start = 0;
+        m_title = extract(strMovie, start, ',');
+        m_year = std::stod(extract(strMovie, start, ','));
+        m_desc = extract(strMovie, start, '\n');
     }
 
     const std::string& Movie::title()const {
         return m_title;
     }
-
-     std::string Movie::trimSpaces(const std::string &str) const {
-        size_t start = str.find_first_not_of(' ');
-        if (start == std::string::npos) {
-            return "";
+    std::string Movie::extract(const std::string& str, size_t& start, char delim) {
+        const size_t end = str.find(delim, start);
+        std::string token;
+        if (end == std::string::npos) {
+            token = str.substr(start, std::string::npos); 
+            start = std::string::npos; 
+        } else {
+            token = str.substr(start, end - start);
+            start = end + 1; 
         }
-        size_t end = str.find_last_not_of(' ');
-        return str.substr(start, end - start + 1);
+        // Trim spaces
+        token.erase(0, token.find_first_not_of(' '));
+        token.erase(token.find_last_not_of(' ') + 1);
+        return token;
     }
+
+    //  std::string Movie::trimSpaces(const std::string &str) const {
+    //     size_t start = str.find_first_not_of(' ');
+    //     if (start == std::string::npos) {
+    //         return "";
+    //     }
+    //     size_t end = str.find_last_not_of(' ');
+    //     return str.substr(start, end - start + 1);
+    // }
 
     void Movie::display(std::ostream &os)const {
          //os << ' ';

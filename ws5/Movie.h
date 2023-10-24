@@ -25,7 +25,8 @@ public:
     Movie()=default;
     Movie(const std::string& strMovie);
     const std::string& title()const;
-    std::string trimSpaces(const std::string& str)const;
+    std::string extract(const std::string& str, size_t& start, char delim);
+    // std::string trimSpaces(const std::string& str)const;
     void display(std::ostream& os)const;
 };
 
