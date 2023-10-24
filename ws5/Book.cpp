@@ -16,14 +16,14 @@ namespace sdds {
         size_t pos5 = strBook.find(',', pos4 + 1);
 
         // Extract and set the member variables with trimmed spaces
-        m_author = strBook.substr(0, pos1);
-        m_title = strBook.substr(pos1 + 2, pos2 - pos1 - 2);
-        m_country = strBook.substr(pos2 + 2, pos3 - pos2 - 2);
+        m_author = trimSpaces(strBook.substr(0, pos1));
+        m_title = trimSpaces(strBook.substr(pos1 + 2, pos2 - pos1 - 2));
+        m_country = trimSpaces(strBook.substr(pos2 + 2, pos3 - pos2 - 2));
         m_price = std::stod(strBook.substr(pos3 + 2, pos4 - pos3 - 2));
         m_year = std::stoi(strBook.substr(pos4 + 2, pos5 - pos4 - 2));
 
         // The description is everything after the last ','
-        m_desc = strBook.substr(pos5 + 1);
+        m_desc = trimSpaces(strBook.substr(pos5 + 1));
     }
 
     std::string Book::trimSpaces(const std::string &str) const {
@@ -49,17 +49,17 @@ namespace sdds {
     void Book::display(std::ostream &os)const {
          //os << ' ';
          os.width(20); 
-         os << std::right << trimSpaces(m_author) << " | ";
+         os << std::right << m_author << " | ";
          os.width(22);
-         os << std::right << trimSpaces(m_title) << " | ";
+         os << std::right << m_title << " | ";
          os.width(5);
-         os << trimSpaces(m_country) << " | ";
+         os << m_country << " | ";
          os.width(4);
          os << m_year << " | ";
          os.precision(2);
          os.width(6);
          os << std::fixed << m_price << " | "
-         << trimSpaces(m_desc); //<< std::endl;
+         << m_desc; //<< std::endl;
     }
 
     std::ostream &operator<<(std::ostream &os, const Book &book) {
