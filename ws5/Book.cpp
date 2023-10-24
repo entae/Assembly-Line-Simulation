@@ -58,8 +58,8 @@ namespace sdds {
          os << m_year << " | ";
          os.precision(2);
          os.width(6);
-         os << std::fixed << m_price << " |"
-         << m_desc; //<< std::endl;
+         os << std::fixed << m_price << " | "
+         << trimSpaces(m_desc); //<< std::endl;
     }
 
     std::ostream &operator<<(std::ostream &os, const Book &book) {
