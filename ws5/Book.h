@@ -24,7 +24,7 @@ namespace sdds {
         //receives reference to unmodifiable string
         //receives formatted string to extract and parse
         Book(const std::string& strBook);
-        // std::string trimSpaces(const std::string& str);
+        std::string trimSpaces(const std::string& str)const;
         //queries 
         const std::string& title()const;
         const std::string& country()const;

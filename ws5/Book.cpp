@@ -26,16 +26,15 @@ namespace sdds {
         m_desc = strBook.substr(pos5 + 2);
     }
 
-    // std::string Book::trimSpaces(const std::string& str) {
-    //     size_t start = str.find_first_not_of(' ');
-    //     size_t end = str.find_last_not_of(' ');
+    std::string Book::trimSpaces(const std::string &str) const {
+        size_t start = str.find_first_not_of(' ');
+        if (start == std::string::npos) {
+            return "";
+        }
+        size_t end = str.find_last_not_of(' ');
+        return str.substr(start, end - start + 1);
+    }
 
-    //     if (start == std::string::npos || str[start - 1] == ' ') {
-    //         return str.substr(start, end - start + 1);
-    //     } else {
-    //         return str;
-    //     }
-    // }
     
     //queries
     const std::string& Book::title() const { return m_title; }
@@ -50,9 +49,9 @@ namespace sdds {
     void Book::display(std::ostream &os)const {
          //os << ' ';
          os.width(20); 
-         os << std::right << m_author << " | ";
+         os << std::right << trimSpaces(m_author) << " | ";
          os.width(22);
-         os << std::right << m_title << " | ";
+         os << std::right << trimSpaces(m_title) << " | ";
          os.width(5);
          os << m_country << " | ";
          os.width(4);
