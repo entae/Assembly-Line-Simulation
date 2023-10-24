@@ -23,7 +23,7 @@ namespace sdds {
         m_year = std::stoi(strBook.substr(pos4 + 2, pos5 - pos4 - 2));
 
         // The description is everything after the last ','
-        m_desc = strBook.substr(pos5 + 2);
+        m_desc = strBook.substr(pos5 + 1);
     }
 
     std::string Book::trimSpaces(const std::string &str) const {
