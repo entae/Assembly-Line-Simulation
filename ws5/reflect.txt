@@ -3,10 +3,21 @@
 // Oct 23, 2023
 // I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 
+-----------------------------------------------------------
 the difference between the implementations/utilizations of a functor and a lambda expression. When is appropriate to use each one?
-
+A:
+A functor overloads the operator(), allowing classes to be used like a function while lambdas are anonymous functions.
+Functors allow for more complex logic and logics that involve states. So functors are more useful for those instances and when the logic needs to be used in multiple places whereas lambdas would be more appropriate for short,logical operations.
+-----------------------------------------------------------
 the constructor for SpellChecker generates an exception in certain conditions. How would you change your code to achieve the same result, but without exceptions (both on the constructor and on the client side)? Compare the two solutions.
-
+A:
+The constructor could set an error flag or return an error code instead of handling the exceptions. However, it would leave out important details as to why the error occured.
+Exception handling allows the programmer to know where and why an exception occured, or that an exception even existed instead of the compiler simply treating the program as having an unexpected error.
+-----------------------------------------------------------
 the classes Movie and Book contain almost identical logic in loading data from the file. How would you redesign the classes in order not to duplicate that logic?
-
+A:
+A potential redesign could be to place the two classes as derived classes of a parent class (Media), and they could inherit the similar logic while polymorphic overloading their more specific logics.
+-----------------------------------------------------------
 the classes Movie and Book are instantiated from the main() function using a custom constructor, but they also contain a default constructor. Is the default constructor necessary? Could you remove it? Justify your answer.
+A:
+Since in this program the objects are always instantiated from the files, the default constructor was not used. So for this specific program it is not needed. However, if they were to be initialized as an empty state to be used or modified later on, the default constructor would be necessary.
