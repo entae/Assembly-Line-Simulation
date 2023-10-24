@@ -43,18 +43,23 @@ int main(int argc, char** argv)
 		//                exit from application with error code "AppErrors::CannotOpenFile"
 		std::ifstream file(argv[1]);
 		if (!file.is_open()) {
-			std::cerr << "Error: Unable to open file '" << argv[1] << "'\n";
+			std::cerr << "Error: Unable to open file: " << argv[1] << "\n";
 			exit(AppErrors::CannotOpenFile);
 		}
 		std::string line;
 		int bookCount = 0;
 		while (std::getline(file, line) && bookCount < 7) {
 			if (line.empty() || line[0] == '#') {
-				library[bookCount] = sdds::Book();
+				//library[bookCount] = sdds::Book();
 				continue;
 			}
-			library[bookCount] = sdds::Book(line);
-			bookCount++;
+			try {
+				library[bookCount] = sdds::Book(line);
+				bookCount++;
+			} catch (const std::invalid_argument& e) {
+				std::cerr << "Error: Invalid input in the file - " << e.what() << std::endl;
+			}
+
 		}
 		file.close();
 		// !TODO

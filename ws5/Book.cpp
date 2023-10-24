@@ -10,10 +10,10 @@ namespace sdds {
 
     Book::Book(const std::string &strBook) {
         // Find the positions of '|' characters
-        size_t pos1 = strBook.find('|');
-        size_t pos2 = strBook.find('|', pos1 + 1);
-        size_t pos3 = strBook.find('|', pos2 + 1);
-        size_t pos4 = strBook.find('|', pos3 + 1);
+        size_t pos1 = strBook.find(',');
+        size_t pos2 = strBook.find(',', pos1 + 1);
+        size_t pos3 = strBook.find(',', pos2 + 1);
+        size_t pos4 = strBook.find(',', pos3 + 1);
 
         // Extract and set the member variables
         m_author = strBook.substr(0, pos1);

@@ -1,0 +1,7 @@
+the difference between the implementations/utilizations of a functor and a lambda expression. When is appropriate to use each one?
+
+the constructor for SpellChecker generates an exception in certain conditions. How would you change your code to achieve the same result, but without exceptions (both on the constructor and on the client side)? Compare the two solutions.
+
+the classes Movie and Book contain almost identical logic in loading data from the file. How would you redesign the classes in order not to duplicate that logic?
+
+the classes Movie and Book are instantiated from the main() function using a custom constructor, but they also contain a default constructor. Is the default constructor necessary? Could you remove it? Justify your answer.
