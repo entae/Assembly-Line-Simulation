@@ -49,15 +49,15 @@ namespace sdds {
     void Book::display(std::ostream &os)const {
          os.width(20); 
          os << std::left << m_author << " | ";
-         os.width(22);
-         os << m_title << " | ";
-         os.width(5);
+         os.width(30);
+         os << std::right << m_title << " | ";
+         os.width(7);
          os << m_country << " | ";
-         os.width(4);
+         os.width(6);
          os << m_year << " | ";
          os.precision(2);
-         os.width(6);
-         os << m_price << " | "
+         os.width(8);
+         os << std::fixed << m_price << " | "
          << m_desc << std::endl;
     }
 
