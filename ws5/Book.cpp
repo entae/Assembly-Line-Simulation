@@ -19,8 +19,8 @@ namespace sdds {
         m_author = trimSpaces(strBook.substr(0, pos1));
         m_title = trimSpaces(strBook.substr(pos1 + 2, pos2 - pos1 - 2));
         m_country = trimSpaces(strBook.substr(pos2 + 2, pos3 - pos2 - 2));
-        m_year = std::stoi(trimSpaces(strBook.substr(pos3 + 2, pos4 - pos3 - 2)));
-        m_price = std::stod(trimSpaces(strBook.substr(pos4 + 2, pos5 - pos4 - 2)));
+        m_price = std::stod(trimSpaces(strBook.substr(pos3 + 2, pos4 - pos3 - 2)));
+        m_year = std::stoi(trimSpaces(strBook.substr(pos4 + 2, pos5 - pos4 - 2)));
 
         // The description is everything after the last ','
         m_desc = trimSpaces(strBook.substr(pos5 + 2));
@@ -47,16 +47,17 @@ namespace sdds {
     }
 
     void Book::display(std::ostream &os)const {
-         os.width(20); 
+         os << ' ';
+         os.width(18); 
          os << std::left << m_author << " | ";
-         os.width(30);
+         os.width(20);
          os << std::right << m_title << " | ";
-         os.width(7);
+         os.width(5);
          os << m_country << " | ";
-         os.width(6);
+         os.width(4);
          os << m_year << " | ";
          os.precision(2);
-         os.width(8);
+         os.width(6);
          os << std::fixed << m_price << " | "
          << m_desc << std::endl;
     }
