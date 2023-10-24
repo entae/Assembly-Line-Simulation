@@ -53,7 +53,7 @@ namespace sdds {
          os.width(22);
          os << std::right << trimSpaces(m_title) << " | ";
          os.width(5);
-         os << m_country << " | ";
+         os << trimSpaces(m_country) << " | ";
          os.width(4);
          os << m_year << " | ";
          os.precision(2);
