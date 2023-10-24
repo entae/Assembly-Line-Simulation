@@ -47,8 +47,8 @@ namespace sdds {
     }
 
     void Book::display(std::ostream &os)const {
-         os << ' ';
-         os.width(18); 
+         //os << ' ';
+         os.width(20); 
          os << std::right << m_author << " | ";
          os.width(22);
          os << std::right << m_title << " | ";
