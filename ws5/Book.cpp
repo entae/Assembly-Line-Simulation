@@ -31,10 +31,14 @@ namespace sdds {
         if (start == std::string::npos) {
             return "";
         }
-
+        // Check if the character at start is not a space
+        if (start > 0 && str[start - 1] != ' ') {
+            return str; // Return the original string
+        }
         size_t end = str.find_last_not_of(' ');
         return str.substr(start, end - start + 1);
     }
+
 
     //queries
     const std::string& Book::title() const { return m_title; }
