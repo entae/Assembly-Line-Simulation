@@ -16,26 +16,26 @@ namespace sdds {
         size_t pos5 = strBook.find(',', pos4 + 1);
 
         // Extract and set the member variables with trimmed spaces
-        m_author = trimSpaces(strBook.substr(0, pos1));
-        m_title = trimSpaces(strBook.substr(pos1 + 2, pos2 - pos1 - 2));
-        m_country = trimSpaces(strBook.substr(pos2 + 2, pos3 - pos2 - 2));
-        m_price = std::stod(trimSpaces(strBook.substr(pos3 + 2, pos4 - pos3 - 2)));
-        m_year = std::stoi(trimSpaces(strBook.substr(pos4 + 2, pos5 - pos4 - 2)));
+        m_author = strBook.substr(0, pos1);
+        m_title = strBook.substr(pos1 + 2, pos2 - pos1 - 2);
+        m_country = strBook.substr(pos2 + 2, pos3 - pos2 - 2);
+        m_price = std::stod(strBook.substr(pos3 + 2, pos4 - pos3 - 2));
+        m_year = std::stoi(strBook.substr(pos4 + 2, pos5 - pos4 - 2));
 
         // The description is everything after the last ','
-        m_desc = trimSpaces(strBook.substr(pos5 + 2));
+        m_desc = strBook.substr(pos5 + 2);
     }
 
-    std::string Book::trimSpaces(const std::string& str) {
-        size_t start = str.find_first_not_of(' ');
-        size_t end = str.find_last_not_of(' ');
+    // std::string Book::trimSpaces(const std::string& str) {
+    //     size_t start = str.find_first_not_of(' ');
+    //     size_t end = str.find_last_not_of(' ');
 
-        if (start == std::string::npos || str[start - 1] == ' ') {
-            return str.substr(start, end - start + 1);
-        } else {
-            return str;
-        }
-    }
+    //     if (start == std::string::npos || str[start - 1] == ' ') {
+    //         return str.substr(start, end - start + 1);
+    //     } else {
+    //         return str;
+    //     }
+    // }
     
     //queries
     const std::string& Book::title() const { return m_title; }
