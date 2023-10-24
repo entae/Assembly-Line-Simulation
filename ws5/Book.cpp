@@ -17,10 +17,10 @@ namespace sdds {
 
         // Extract and set the member variables with trimmed spaces
         m_author = trimSpaces(strBook.substr(0, pos1));
-        m_title = trimSpaces(strBook.substr(pos1 + 1, pos2 - pos1 - 1));
-        m_country = trimSpaces(strBook.substr(pos2 + 1, pos3 - pos2 - 1));
-        m_price = std::stod(trimSpaces(strBook.substr(pos3 + 1, pos4 - pos3 - 1)));
-        m_year = std::stoi(trimSpaces(strBook.substr(pos4 + 1, pos5 - pos4 - 1)));
+        m_title = trimSpaces(strBook.substr(pos1 + 2, pos2 - pos1 - 2));
+        m_country = trimSpaces(strBook.substr(pos2 + 2, pos3 - pos2 - 2));
+        m_price = std::stod(trimSpaces(strBook.substr(pos3 + 2, pos4 - pos3 - 2)));
+        m_year = std::stoi(trimSpaces(strBook.substr(pos4 + 2, pos5 - pos4 - 2)));
 
         // The description is everything after the last ','
         m_desc = trimSpaces(strBook.substr(pos5 + 2));
@@ -36,7 +36,7 @@ namespace sdds {
             return str;
         }
     }
-
+    
     //queries
     const std::string& Book::title() const { return m_title; }
     const std::string& Book::country() const { return m_country; }
