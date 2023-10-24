@@ -1,3 +1,8 @@
+// In Tae Chung | 128 958 220
+// itchung@myseneca.ca
+// Oct 23, 2023
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+
 the difference between the implementations/utilizations of a functor and a lambda expression. When is appropriate to use each one?
 
 the constructor for SpellChecker generates an exception in certain conditions. How would you change your code to achieve the same result, but without exceptions (both on the constructor and on the client side)? Compare the two solutions.

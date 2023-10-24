@@ -1,6 +1,6 @@
 // In Tae Chung | 128 958 220
 // itchung@myseneca.ca
-// Oct 11, 2023
+// Oct 23, 2023
 // I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 
 #include "Book.h"
@@ -59,7 +59,7 @@ namespace sdds {
          os.precision(2);
          os.width(6);
          os << std::fixed << m_price << " | "
-         << m_desc; //<< std::endl;
+         << m_desc << std::endl;
     }
 
     std::ostream &operator<<(std::ostream &os, const Book &book) {

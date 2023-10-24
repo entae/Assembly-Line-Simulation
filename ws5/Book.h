@@ -1,6 +1,6 @@
 // In Tae Chung | 128 958 220
 // itchung@myseneca.ca
-// Oct 18, 2023
+// Oct 23, 2023
 // I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 
 #ifndef SDDS_BOOK_H
@@ -20,6 +20,12 @@ namespace sdds {
         double m_price{};
         std::string m_desc{};
     public:
+
+        template <typename T>
+        void fixSpelling(T& spellChecker) {
+            spellChecker(m_desc);
+        }
+
         Book()=default;
         //receives reference to unmodifiable string
         //receives formatted string to extract and parse
