@@ -59,7 +59,7 @@ namespace sdds {
          os.precision(2);
          os.width(6);
          os << std::fixed << m_price << " | "
-         << m_desc << std::endl;
+         << m_desc; //<< std::endl;
     }
 
     std::ostream &operator<<(std::ostream &os, const Book &book) {
