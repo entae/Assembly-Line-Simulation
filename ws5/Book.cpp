@@ -58,7 +58,7 @@ namespace sdds {
          os << m_year << " | ";
          os.precision(2);
          os.width(6);
-         os << std::fixed << m_price << " | "
+         os << std::fixed << m_price << " |"
          << m_desc; //<< std::endl;
     }
 
