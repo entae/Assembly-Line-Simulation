@@ -28,7 +28,7 @@ namespace sdds {
     }
 
     std::string Directory::path()const {
-        return (m_parent_path == "/") ? ("/" + m_name) : (m_parent_path + "/" + m_name);
+        return (m_parent_path == "/") ? ("/" + m_name) : (m_parent_path + m_name);
     }
 
     std::string Directory::name()const {
