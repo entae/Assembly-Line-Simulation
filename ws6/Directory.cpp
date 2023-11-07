@@ -63,46 +63,31 @@ namespace sdds {
         for (Resource* resource : m_contents) {
             if (resource->name() == name) {
                 result = resource;
-                break;
             }
         }
 
         // Custom loop to find OpFlags::RECURSIVE in the flags vector
-        bool recursiveFlagFound = false;
-        for (const OpFlags& flag : flags) {
-            if (flag == OpFlags::RECURSIVE) {
-                recursiveFlagFound = true;
-                break;
-            }
-        }
+        bool recursiveFlagFound = std::find(flags.begin(), flags.end(), OpFlags::RECURSIVE) != flags.end();
 
         if (!result && recursiveFlagFound) {
             for (Resource* resource : m_contents) {
                 if (resource->type() == NodeType::DIR) {
                     result = dynamic_cast<Directory*>(resource)->findRecursive(name, flags);
-                    if (result) {
-                        break;
-                    }
                 }
             }
         }
         return result;
     }
 
-
-
-    Resource* Directory::findRecursive(const std::string& name, const std::vector<OpFlags>& flags)const {
+    Resource* Directory::findRecursive(const std::string& name, const std::vector<OpFlags>& flags) const {
         Resource* result = nullptr;
+
         for (Resource* resource : m_contents) {
             if (resource->name() == name) {
                 result = resource;
-                break;
             }
             if (resource->type() == NodeType::DIR) {
                 result = dynamic_cast<Directory*>(resource)->findRecursive(name, flags);
-                if (result) {
-                    break;
-                }
             }
         }
         return result;
