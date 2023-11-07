@@ -1,0 +1,5 @@
+Q1: Why do you need to deallocate the dynamically allocated memory in your vector of resources?
+
+Q2: To call specific functions for a Directory objects stored in a Resource*, what special C++ operation did you have to do and why?
+
+Q3: In this workshop you had to use std::vector<sdds::Resource*> to store a collection of filesystem resources as pointers. Could you have used std::vector<sdds::Resource> instead? Justify your answer!
