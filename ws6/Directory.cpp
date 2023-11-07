@@ -67,7 +67,7 @@ namespace sdds {
         }
 
         // Custom loop to find OpFlags::RECURSIVE in the flags vector
-        bool recursiveFlagFound = std::find(flags.begin(), flags.end(), OpFlags::RECURSIVE) != flags.end();
+        bool recursiveFlagFound = std::find(flags.begin(), flags.end(), sdds::OpFlags::RECURSIVE) != flags.end();
 
         if (!result && recursiveFlagFound) {
             for (Resource* resource : m_contents) {
