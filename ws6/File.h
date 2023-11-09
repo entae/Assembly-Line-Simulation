@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include "Resource.h"
+#include "Flags.h"
 
 namespace sdds
 {

@@ -3,6 +3,7 @@
 // Nov 7, 2023
 // I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 
+#include <iomanip>
 #include "Directory.h"
 
 namespace sdds {
@@ -14,6 +15,7 @@ namespace sdds {
         for (Resource* resource : m_contents) {
             delete resource;
         }
+        m_contents.clear();
     }
 
     void Directory::update_parent_path(const std::string& parent_path) {
@@ -28,7 +30,7 @@ namespace sdds {
     }
 
     std::string Directory::path()const {
-        return (m_parent_path == "/") ? ("/" + m_name) : (m_parent_path + m_name);
+        return m_parent_path + m_name;
     }
 
     std::string Directory::name()const {
@@ -65,7 +67,6 @@ namespace sdds {
                 result = resource;
             }
         }
-
         // Custom loop to find OpFlags::RECURSIVE in the flags vector
         bool recursiveFlagFound = false;
         for (const OpFlags& flag : flags) {
@@ -96,6 +97,57 @@ namespace sdds {
             }
         }
         return result;
+    }
+
+    void Directory::remove(const std::string& name, const std::vector<OpFlags>& flags) {
+        Resource* resourceToRemove = find(name, flags);
+        if (!resourceToRemove) {
+            throw std::invalid_argument(name + " does not exist in " + m_name + ".");
+        }
+
+        if (resourceToRemove->type() == NodeType::DIR) {
+            bool recursiveFlagFound = false;
+            for (const OpFlags& flag : flags) {
+                if (flag == OpFlags::RECURSIVE) {
+                    recursiveFlagFound = true;
+                }
+            }
+
+            if (!recursiveFlagFound) {
+                throw std::invalid_argument(name + " is a directory. Pass the recursive flag to delete directories.");
+            }
+        }
+
+        m_contents.erase(std::remove(m_contents.begin(), m_contents.end(), resourceToRemove), m_contents.end());
+        delete resourceToRemove;
+    }
+
+    void Directory::display(std::ostream& os, const std::vector<FormatFlags>& flags) const {
+        os << "Total size: " << this->size() << " bytes" << std::endl;
+        for (Resource* resource : m_contents) {
+            if (resource->type() == NodeType::DIR) {
+                os << "D";
+            } else {
+                os << "F";
+            }
+            os << " | " << std::left << std::setw(15) << resource->name() << " |";
+            auto isRecursive = std::find_if(flags.begin(), flags.end(), [](FormatFlags flag) {
+                return flag == FormatFlags::LONG;
+            });
+            if (isRecursive != flags.end()) {
+                if (resource->type() == NodeType::DIR) {
+                    os << std::right << " " << std::setw(2) << resource->count() << " | ";
+                    os << std::right << std::setw(10) << std::to_string(resource->size()) + " bytes"
+                    << " | ";
+                } else {
+                    os << std::right <<  " " << std::setw(2) << "  "
+                    << " | ";
+                    os << std::right << std::setw(10) << std::to_string(resource->size()) + " bytes"
+                    << " | ";
+                }
+            }
+            os << std::endl;
+        }
     }
 
 }  // namespace sdds

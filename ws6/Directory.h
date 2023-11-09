@@ -15,6 +15,14 @@ namespace sdds {
     private:
         std::vector<Resource*> m_contents;
 
+        // Private helper function to recursively find a resource by name
+        Resource* findRecursive(const std::string& name, const std::vector<OpFlags>& flags) const;
+
+        // Make the class non-copyable and non-movable
+        Directory(const Directory& other)=delete;
+        Directory& operator=(const Directory& other)=delete;
+        Directory(Directory&& other)=delete;
+        Directory& operator=(Directory&& other)=delete;
     public:
         Directory()=default;
         Directory(const std::string& name); 
@@ -33,16 +41,10 @@ namespace sdds {
 
         Resource* find(const std::string& name, const std::vector<OpFlags>& flags = {});
         
+        void remove(const std::string&, const std::vector<OpFlags>& opFlags = {});
 
-    private:
-        // Private helper function to recursively find a resource by name
-        Resource* findRecursive(const std::string& name, const std::vector<OpFlags>& flags) const;
-        
-        // Make the class non-copyable and non-movable
-        Directory(const Directory& other)=delete;
-        Directory& operator=(const Directory& other)=delete;
-        Directory(Directory&& other)=delete;
-        Directory& operator=(Directory&& other)=delete;
+        void display(std::ostream&, const std::vector<FormatFlags>& formatFlags = {})const;
+
     };
 }  // namespace sdds
 

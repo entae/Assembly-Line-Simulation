@@ -1,5 +1,17 @@
+// In Tae Chung | 128 958 220
+// itchung@myseneca.ca
+// Nov 8, 2023
+// I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+----------------------------------------------------------
 Q1: Why do you need to deallocate the dynamically allocated memory in your vector of resources?
 
+Since adding a new resource to the vector created a copy of the pointer to the dynamically allocated object, if the memory was not deallocated from these objects before removing the vector, it would lead to a memory leak.
+----------------------------------------------------------
 Q2: To call specific functions for a Directory objects stored in a Resource*, what special C++ operation did you have to do and why?
 
+Dynamic casting had to be used to convert type Resource* into a type Directory* in certain cases. This was done so that specific methods available and unique to the Directory class was made available to the object. I could access polymorphic methods that were specific to the derived class while working with base class pointers.
+----------------------------------------------------------
 Q3: In this workshop you had to use std::vector<sdds::Resource*> to store a collection of filesystem resources as pointers. Could you have used std::vector<sdds::Resource> instead? Justify your answer!
+
+Since using std::vector<sdds::Resource> would have stored copies of the base class objects, it would not have allowed for polymorphic behaviour where the vector could store objects of different types derived from the class Resource.
+To allow for the differing behaviour, the vector had to be made of Resource*.

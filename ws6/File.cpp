@@ -25,7 +25,7 @@ namespace sdds {
     }
 
     std::string File::path() const {
-        return (m_parent_path == "/") ? ("/" + m_name) : (m_parent_path + m_name);
+        return m_parent_path + m_name;
     }
 
 
