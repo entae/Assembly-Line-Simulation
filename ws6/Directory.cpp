@@ -100,26 +100,26 @@ namespace sdds {
     }
 
     void Directory::remove(const std::string& name, const std::vector<OpFlags>& flags) {
-        Resource* resourceToRemove = find(name, flags);
-        if (!resourceToRemove) {
+        Resource* resToRemove = find(name, flags);
+        if (!resToRemove) {
             throw std::invalid_argument(name + " does not exist in " + m_name + ".");
         }
 
-        if (resourceToRemove->type() == NodeType::DIR) {
-            bool recursiveFlagFound = false;
+        if (resToRemove->type() == NodeType::DIR) {
+            bool recursiveFound = false;
             for (const OpFlags& flag : flags) {
                 if (flag == OpFlags::RECURSIVE) {
-                    recursiveFlagFound = true;
+                    recursiveFound = true;
                 }
             }
 
-            if (!recursiveFlagFound) {
+            if (!recursiveFound) {
                 throw std::invalid_argument(name + " is a directory. Pass the recursive flag to delete directories.");
             }
         }
 
-        m_contents.erase(std::remove(m_contents.begin(), m_contents.end(), resourceToRemove), m_contents.end());
-        delete resourceToRemove;
+        m_contents.erase(std::remove(m_contents.begin(), m_contents.end(), resToRemove), m_contents.end());
+        delete resToRemove;
     }
 
     void Directory::display(std::ostream& os, const std::vector<FormatFlags>& flags) const {

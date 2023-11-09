@@ -10,19 +10,28 @@
 
 namespace sdds {
     Filesystem::Filesystem(const std::string filename, const std::string root) {
+        // open file for reading
         std::ifstream file(filename);
         if (file.fail()) {
             throw std::invalid_argument("File failed to open.");
         }
+
+        // create root directory with 'root'
         m_root = new Directory(root);
+        // set current directory to root
         m_current = m_root;
+
+        // reading each line from file
         std::string line;
         while (std::getline(file, line)) {
             Directory* curDir = m_root;
+            // check for file
             if (line.find('|') != std::string::npos) {
                 // File
                 std::vector<std::string> lineTokens = split(line, '|');
                 std::vector<std::string> pathTokens = split(lineTokens.front(), '/');
+
+                // move down paths, create directories as needed
                 for (size_t i = 0; i < pathTokens.size() - 1; i++) {
                     Resource* foundResource = curDir->find(pathTokens[i] + '/');
                     if (foundResource == nullptr) {
@@ -33,6 +42,7 @@ namespace sdds {
                         curDir = static_cast<Directory*>(foundResource);
                     }
                 }
+                // create and add file if it does not exist
                 if (curDir->find(pathTokens.back()) == nullptr) {
                     File* newFile = new File(pathTokens.back(), lineTokens.back());
                     *curDir += newFile;
@@ -40,6 +50,7 @@ namespace sdds {
             } else {
                 // Directory
                 std::vector<std::string> pathTokens = split(line, '/');
+                // move down paths, creating directories as needed
                 for (size_t i = 0; i < pathTokens.size(); i++) {
                     Resource* foundResource = curDir->find(pathTokens[i] + '/');
                     if (foundResource == nullptr) {
