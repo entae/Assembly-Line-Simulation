@@ -4,6 +4,7 @@
 // I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
 
 #include <iomanip>
+#include <algorithm>
 #include "Directory.h"
 
 namespace sdds {
@@ -119,6 +120,7 @@ namespace sdds {
         }
 
         m_contents.erase(std::remove(m_contents.begin(), m_contents.end(), resToRemove), m_contents.end());
+        m_contents.shrink_to_fit();
         delete resToRemove;
     }
 
