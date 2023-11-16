@@ -1,0 +1,16 @@
+Q1: list all the STL functions that you have used in this workshop; explain your reasoning for choosing each one, and not another.
+
+std::sort was used for the sorting of the 'Covid' objects as it was an efficient and standard way to perform sorting.
+std::copy_if was used in getListForDeaths to copy elements from the original collection to the result list based on the required conditions. Using this method allowed for better readability. 
+std::for_each was used in place of the manual loops where iteration over elements were needed. It allowed the code to be concise.
+I had tried using std::equal_range in the display method to filter by certain values, but it turned out to be much easier to use the copy_if for iterating over the elements to grab only the information I needed.
+-----------------------------------------------------------
+Q2: present the advantages of using STL algorithms vs. implementing the functionality by yourself using loops.
+
+Using STL algorithms allowed my code to be much easier to read. By taking advantage of the library methods such as 'sort', 'copy_if', or 'for_each', the code became much more concise and easy to understand what was happening through the method names.
+I also knew that the STL algorithms were optimized to be as efficient as possible, allowing me to avoid worrying about efficiency when sorting elements. 
+Finally, as these methods could be trusted, I did not have to worry about errors or maintainability whereas if I had to iterate over certain elements, or filter through objects, it would have been a very time-consuming task.
+-----------------------------------------------------------
+Q3: the function that sorts the collection of objects receives as a parameter the field name to use; this can create errors if the client specifies an invalid field (or misspells it). How would you redesign that function to prevent the client from specifying an invalid string, allowing any error to be detected by the compiler?
+
+If I defined an enum class with constants that had the values of valid fields, the user-specified argument could be compared to the enum to see if it is valid or not. If the user-specified argument does not match with any value in the enumerated class, it would throw an error allowing it to be detected by the compiler. Depending on the logic of the program it would likely be best-practice to create some exception handling within the 'Sort' method with this approach as well.
