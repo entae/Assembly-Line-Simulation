@@ -30,7 +30,7 @@ namespace sdds {
 
     void CovidCollection::display(std::ostream& out, const std::string& country) const {
         auto displayFunc = [&out](const Covid& c) {
-            out << c;
+            out << c << std::endl;
         };
 
         // Calculate and print total cases and deaths
@@ -117,8 +117,6 @@ namespace sdds {
         });
     }
 
-
-
     bool CovidCollection::inCollection(const std::string& variant, const std::string& country, unsigned int deaths) const {
         return std::any_of(cc_collection.begin(), cc_collection.end(), 
             [variant, country, deaths](const Covid& c) {
@@ -160,7 +158,7 @@ namespace sdds {
         }
         out << " | " << std::setw(4) << std::right << theCovid.c_cases
             << " | " << std::setw(3) << std::right << theCovid.c_deaths
-             << " | | " << std::setw(8) << std::right << theCovid.c_severity << " |" << std::endl;
+             << " | | " << std::setw(8) << std::right << theCovid.c_severity << " |";
 
         return out;
     }
