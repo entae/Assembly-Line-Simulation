@@ -1,24 +1,27 @@
-#ifndef COVID_COLLECTION_H
-#define COVID_COLLECTION_H
+#ifndef SDDS_COVIDCOLLECTION_H
+#define SDDS_COVIDCOLLECTION_H
 
 #include <iostream>
-#include <fstream>
+#include <string>
 #include <vector>
-#include <algorithm>
+#include <list>
 
+// DO NOT USE MANUAL LOOPS == should not use "for" or "while"
 namespace sdds {
 
     struct Covid {
-        std::string c_country;
-        std::string c_city;
-        std::string c_variant;
-        int c_year;
-        unsigned int c_cases;
-        unsigned int c_deaths;
+        std::string c_country{};
+        std::string c_city{};
+        std::string c_variant{};
+        int c_year{};
+        unsigned int c_cases{};
+        unsigned int c_deaths{};
+         // this field fills 8 characters when printed
+        std::string c_severity{"General"};
     };
 
     class CovidCollection {
-        std::vector<Covid> collection;
+        std::vector<Covid> cc_collection{};
 
         // Helper function to trim whitespace from the beginning and end of a string
         static std::string trim(const std::string& str);
@@ -26,8 +29,16 @@ namespace sdds {
     public:
         CovidCollection(const std::string& filename);
 
-        // DO NOT USE MANUAL LOOPS
-        void display(std::ostream& out) const;
+        // Task #1 DO NOT USE MANUAL LOOPS
+        void display(std::ostream& out, const std::string& country = "ALL")const;
+        // Task #2 DO NOT USE MANUAL LOOPS
+        void sort(const std::string& field = "country");
+        // Task #3 DO NOT USE MANUAL LOOPS
+        bool inCollection(const std::string& variant, const std::string& country, unsigned int deaths)const;
+        // Task #4 DO NOT USE MANUAL LOOPS
+        std::list<Covid> getListForDeaths(unsigned int deaths)const;
+        // Task #5 DO NOT USE MANUAL LOOPS
+        void updateStatus();
     };
 
     // Free Helper
@@ -35,4 +46,4 @@ namespace sdds {
 
 } // namespace sdds
 
-#endif // COVID_COLLECTION_H
+#endif
