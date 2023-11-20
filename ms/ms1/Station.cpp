@@ -57,7 +57,7 @@ namespace sdds {
             << std::setw(6) << std::setfill('0') << std::right << m_serialNumber << " | ";
 
         if (full) {
-            os << std::setw(4) << std::right << m_quantity << " | " 
+            os << std::setw(4) << std::setfill(' ') << std::right << m_quantity << " | " 
                 << std::left << m_description;
         }
 
