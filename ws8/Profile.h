@@ -98,13 +98,13 @@ namespace sdds {
 			// }
 
 			if (m_address.number < 0 ||
-			!isalpha(m_address.postal_code[0]) ||
-			!isdigit(m_address.postal_code[1]) ||
-			!isalpha(m_address.postal_code[2]) ||
-			!isspace(m_address.postal_code[3]) || // check for space
-			!isalpha(m_address.postal_code[4]) ||
-			!isdigit(m_address.postal_code[5]) ||
-			!isalpha(m_address.postal_code[6])) {
+			!std::isalpha(m_address.postal_code[0]) ||
+			!std::isdigit(m_address.postal_code[1]) ||
+			!std::isalpha(m_address.postal_code[2]) ||
+			!std::isspace(m_address.postal_code[3]) || // check for space
+			!std::isdigit(m_address.postal_code[4]) ||
+			!std::isalpha(m_address.postal_code[5]) ||
+			!std::isdigit(m_address.postal_code[6])) {
 				throw std::string("*** Invalid Address ***");
 			}
 		}

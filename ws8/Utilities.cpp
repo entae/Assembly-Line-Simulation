@@ -15,11 +15,11 @@ namespace sdds {
 		// TODO: Add your code here to build a collection of Profiles.
 		//         The result should contain only profiles from `allProfiles`
 		//         which are not in `bannedProfiles` using Raw Pointers.
-		for (size_t i = 0; i < allProfiles.size(); ++i) {
+		for (size_t i = 0; i < allProfiles.size(); i++) {
 
 			// Check if bannedProfile
 			bool isBanned = false;
-			for (size_t j = 0; j < bannedProfiles.size() && !isBanned; ++j) {
+			for (size_t j = 0; j < bannedProfiles.size() && !isBanned; j++) {
 				if (allProfiles[i].m_name.first_name == bannedProfiles[j].m_name.first_name &&
 					allProfiles[i].m_name.last_name == bannedProfiles[j].m_name.last_name &&
 					allProfiles[i].m_age == bannedProfiles[j].m_age) {
