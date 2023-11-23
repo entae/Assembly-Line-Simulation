@@ -39,10 +39,14 @@ namespace sdds {
 		// TODO: Overload the += operator with a raw pointer
 		//       as a second operand.
 		void operator+=(const T* item) {
-			// if (item) {
-				database.push_back(*item);
-			// }
-			// return *this;
+			database.push_back(*item);
+		}
+
+		// TODO: Overload the += operator with a smart pointer
+		//       as a second operand.
+		void operator+=(std::unique_ptr<T> item) {
+			//try not explicitly stating move
+			database.push_back(std::move(*item));
 		}
 
 
