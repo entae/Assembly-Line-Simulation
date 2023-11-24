@@ -40,6 +40,7 @@ namespace sdds {
 		//       as a second operand.
 		void operator+=(const T* item) {
 			database.push_back(*item);
+			// database.push_back(std::move(*item));
 		}
 
 		// TODO: Overload the += operator with a smart pointer

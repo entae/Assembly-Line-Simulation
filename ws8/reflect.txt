@@ -1,0 +1,17 @@
+Q: the advantage that smart pointer syntax provides. Use example from your code to support your explanation.
+
+A: Smart pointer syntax allows for automatic memory management which helps to prevent memory leaks. Comparing the excludeRaw method to the excludeSmart method, whether the newProfile being added was caught by the error handling or successfully added, the excludeSmart method does not need to delete the newProfile stored in dynamic memory.
+--------------------------------------------------------------
+Q: the difference between raw and smart pointer syntax in your solution.
+
+A: The main difference would be having to include the words 'new' and 'delete' to manage the dynamic memory whilst using raw pointers. However, when using std::unique_ptr, the memory is automatically managed, so after declaring the smart pointer, less lines of code is required for managing specific objects.
+--------------------------------------------------------------
+Q: look at the output when the profiles are excluded using raw/smart pointers: the objects are duplicated a lot of times (e.g., the object with ID 176 is duplicated into object 177; then object 177 is duplicated into object 180 and 177 gets deleted; object 180 is duplicated into 183 and then is deleted, etc.). Explain why so many copies are created!
+    - Hint: Put a breakpoint into function(s) exclude... and follow the execution of your code line by line. Check when the messages come into the output, and what operations trigger making so many copies.
+    - How would you redesign the application to reduce the number of copies that are made?
+
+A: When adding a pointer to the collection using the '+=' operator a copy of the pointer is created, not the object it is pointing to. This leads to the duplication of many objects where the copy of the objects are no longer needed. Since the objects are going to be deleted without being used after they are copied, incorporating move operators would save a lot of resources compared to defaulting to the copy operations.
+--------------------------------------------------------------
+Q: The class Profile doesn't provide an explicit move constructor. What happens if in the DataBase you add objects into the collection attribute using std:move()? Do an experiment and report your findings.
+
+A: Without the explicit move constructor, trying to use std::move() defaults to calling the copy constructor, creating unnecessary copies. The output of the program remains the same despite trying to explicitly call std::move() since there is no definition provided for the move operations.

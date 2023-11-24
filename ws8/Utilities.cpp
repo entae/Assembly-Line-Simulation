@@ -39,7 +39,7 @@ namespace sdds {
 					delete newProfile;
 					throw msg;
 				}
-				result += newProfile;
+				result += std::move(newProfile);
 				delete newProfile;
 			}
 		}
@@ -75,7 +75,7 @@ namespace sdds {
                     throw msg;
                 }
 
-                result += newProfile.get();
+                result += std::move(newProfile);
             }
         }
 
