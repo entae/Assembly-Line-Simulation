@@ -6,6 +6,7 @@
 // I confirm that I am the only author of this file
 //   and the content was created entirely by me.
 
+#include <iostream>
 #include "Utilities.h"
 
 namespace sdds {
@@ -20,31 +21,26 @@ namespace sdds {
     }
 
     std::string Utilities::extractToken(const std::string& str, size_t& next_pos, bool& more) {
-        std::string token;
+        size_t pos = str.find(m_delimiter, next_pos);
 
-        size_t delimiterPos = str.find(m_delimiter, next_pos);
+        if (pos == next_pos) {
+            more = false;
+            throw "Error Occurred";
+        }
 
-        if (delimiterPos != std::string::npos) {
-            token = str.substr(next_pos, delimiterPos - next_pos);
-            token = trim(token);  // Trim the token first
-            next_pos = delimiterPos + 1;
-            more = true;
+        std::string token = (pos != std::string::npos) ? str.substr(next_pos, pos - next_pos) : str.substr(next_pos);
+        more = (pos != std::string::npos);
 
-            // Update field width if needed
-            if (token.length() > m_widthField) {
-                m_widthField = token.length();
+        if (!token.empty()) {
+            token = trim(token);
+            next_pos = pos + 1;
+
+            if (token.length() >= m_widthField) {
+                setFieldWidth(token.length());
             }
+
         } else {
-            if (next_pos < str.length()) {
-                token = str.substr(next_pos, str.length() - next_pos);
-                token = trim(token);  // Trim the token first
-                next_pos = str.length();  // Ensure next_pos is set to the end of the string
-                more = false;
-            } else {
-                // No more tokens, throw an exception for an empty token
-                more = false;
-                throw std::string("ERROR: No token.");
-            }
+            more = false;
         }
 
         return token;
