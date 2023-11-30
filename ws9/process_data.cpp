@@ -20,7 +20,7 @@ namespace sdds
 	// 	 as average-factor. For part 1, you will be using same value for size and double. Use of 
 	//   different values for size and divisor will be useful for multi-threaded implementation in part-2. 
 	void computeAvgFactor(const int* arr, int size, int divisor, double& avg) {
-		std::this_thread::sleep_for(std::chrono::nanoseconds(500));
+		std::this_thread::sleep_for(std::chrono::nanoseconds(10));
 		avg = 0;
 		for (int i = 0; i < size; i++) {
 			avg += arr[i];
@@ -36,7 +36,7 @@ namespace sdds
 	//   For part 1, you will be using same value for size and double. Use of different values for size 
 	//   and divisor will be useful for multi-threaded implementation in part-2. 
 	void computeVarFactor(const int* arr, int size, int divisor, double avg, double& var) {
-		std::this_thread::sleep_for(std::chrono::nanoseconds(500));
+		std::this_thread::sleep_for(std::chrono::nanoseconds(10));
 		var = 0;
 		for (int i = 0; i < size; i++) {
 			var += (arr[i] - avg) * (arr[i] - avg);
