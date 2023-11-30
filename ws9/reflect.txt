@@ -1,0 +1,17 @@
+Q: was there any benefit from using binary files in this workshop?
+
+A: Since binary is data that the computer can read directly and efficiently compared to text files, storing files as binary is useful for storing large amounts of data more compactly. As it's also easier for the computer to work with, the read and write operations can also be completed quicker.
+--------------------------------------------------
+Q: why would be important to bind a function to its arguments, and how was it useful in this workshop
+
+A: Binding functions to the arguments is useful for creating specialized versions of functions. In this workshop, using std::bind allowed for specific arguments of the 'computeAvgFactor' and 'computeVarFactor' functions to be bound together. This allowed for the use of multithreading while working with separate data groups. 
+This allowed for data to be safely be encapsulated and useable while being used in a multithreaded environment.
+--------------------------------------------------
+Q: the advantages of using multiple threads, and how did you accomplish multi-threading in this workshop
+
+A: The advantages of multithreading is that it allows for several logics to run at the same time, allowing for better performance and utilization depending on the logic of the program. In this workshop, multithreaded was used to run the computation of average and variance values of different segments of the data. By running these processes in parallel, the workload was distributed based on the CPU cores and potentially reduced the overall computing time.
+--------------------------------------------------
+Observation of computation times with different parameters:
+
+- despite introducing sleep durations within the computation functions of computeAvgFactor and computeVarFactor, the computational times were not actually noticeably effected for the values of 1, 10, and 50 nanoseconds. Furthermore, the times remained very consistent regardless of the number of threads being employed. 
+- for this workshop, it seems like there was no huge benefit of parallelizing the processes. However, it can also be observed that multithreading did not introduce and errors or variations in the calculations despite being run over several different number of thread counts, which displayed how reliable the parallel process was.
