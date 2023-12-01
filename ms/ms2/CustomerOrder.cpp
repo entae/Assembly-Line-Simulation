@@ -64,11 +64,19 @@ namespace sdds {
 
     CustomerOrder& CustomerOrder::operator=(CustomerOrder&& src) noexcept {
         if (this != &src) {
+            // Release existing resources
+            for (size_t i = 0; i < m_cntItem; i++) {
+                delete m_lstItem[i];
+            }
+            delete[] m_lstItem;
+
+            // Move resources from src to this
             m_name = std::move(src.m_name);
             m_product = std::move(src.m_product);
             m_cntItem = src.m_cntItem;
             m_lstItem = src.m_lstItem;
 
+            // Reset src
             src.m_cntItem = 0;
             src.m_lstItem = nullptr;
         }
