@@ -1,0 +1,7 @@
+Milestones 1 and 2 were logically not too difficult to implement, but it took me a lot of time to ensure the behavior matched the output exactly.
+
+Milestone 3 was much more complicated compared to the first two milestones. Especially the LineManager constructor. To make use of the STL functions, such as find_if, without using manual loops, lambda expressions were used instead. the push_back vector STL function was used to add to vectors. These functions were crucial for initiating the m_activeLine and m_firstStation to allow the rest of the functions to properly handle the data related to each station.
+It was interesting to make use of STL algorithms which allowed for reduced errors to occur, but it also took a bit of time to look into and understand exactly how each function behaved.
+
+After the logic of the modules in ms3 was achieved, it was another small hurdle to try and understand why the output was not matching exactly. I was not expecting to have to edit my previous modules as they had already passed the submissions. I ended up tracing my functions to see which functions were being called in the stack. 
+I was then able to successfully fix CustomerOrder module, specifically the fillItem and display functions within this module.
