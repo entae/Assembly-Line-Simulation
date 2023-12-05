@@ -9,16 +9,17 @@
 #ifndef SDDS_LINEMANAGER_H
 #define SDDS_LINEMANAGER_H
 
-#include <iostream>
 #include <vector>
 #include "Workstation.h"
 
 namespace sdds {
-
     class LineManager {
         std::vector<Workstation*> m_activeLine{};
         size_t m_cntCustomerOrder{};
         Workstation* m_firstStation{};
+
+        Workstation* findLastInSequence(const std::vector<Workstation*>& stations);
+        Workstation* findPredecessor(const std::vector<Workstation*>& stations, const std::vector<Workstation*>::const_iterator currStation);
 
     public:
         LineManager(const std::string& file, const std::vector<Workstation*>& stations);
@@ -26,7 +27,6 @@ namespace sdds {
         bool run(std::ostream& os);
         void display(std::ostream& os) const;
     };
+} // namespace sdds
 
-}
-
-#endif // !SDDS_LINEMANAGER_H
+#endif // SDDS_LINEMANAGER_H

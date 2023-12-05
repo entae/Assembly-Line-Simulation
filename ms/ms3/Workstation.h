@@ -21,10 +21,10 @@ namespace sdds {
         std::deque<CustomerOrder> m_orders{};
         Workstation* m_pNextStation{};
 
-        // Workstation(const Workstation&) = delete;
-        // Workstation& operator=(const Workstation&) = delete;
-        // Workstation(Workstation&&) = delete;
-        // Workstation& operator=(Workstation&&) = delete;
+        Workstation(const Workstation&) = delete;
+        Workstation& operator=(const Workstation&) = delete;
+        Workstation(Workstation&&) = delete;
+        Workstation& operator=(Workstation&&) = delete;
 
     public:
         Workstation(const std::string& record);

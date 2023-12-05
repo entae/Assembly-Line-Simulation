@@ -14,36 +14,39 @@ namespace sdds {
     std::deque<CustomerOrder> g_completed{};
     std::deque<CustomerOrder> g_incomplete{};
 
-    Workstation::Workstation(const std::string& record) : Station(record), m_pNextStation(nullptr) {}
+    Workstation::Workstation(const std::string& record) : Station(record){};
 
     void Workstation::fill(std::ostream& os) {
-        if (!m_orders.empty()) m_orders.front().fillItem(*this, os);
+        if (!m_orders.empty()) {
+            CustomerOrder& order = m_orders.front();
+            order.fillItem(*this, os);
+        }
     }
 
     bool Workstation::attemptToMoveOrder() {
-        bool orderMoved = false;
+        bool moved = false;
         if (!m_orders.empty()) {
             CustomerOrder& order = m_orders.front();
             if (order.isOrderFilled()) {
                 g_completed.push_back(std::move(order));
                 m_orders.pop_front();
-                orderMoved = true;
+                moved = true;
             }
             else if (!order.isItemFilled(getItemName()) && getQuantity() > 0) {
-                orderMoved = false;
+                moved = false;
             }
             else if (m_pNextStation) {
                 *m_pNextStation += std::move(order);
                 m_orders.pop_front();
-                orderMoved = true;
+                moved = true;
             }
             else {
                 g_incomplete.push_back(std::move(order));
                 m_orders.pop_front();
-                orderMoved = true;
+                moved = true;
             }
         }
-        return orderMoved;
+        return moved;
     }
 
     void Workstation::setNextStation(Workstation* station) {
@@ -55,7 +58,7 @@ namespace sdds {
     }
 
     void Workstation::display(std::ostream& os) const {
-        os << getItemName() << " --> ";
+        os << this->getItemName() << " --> ";
         if (m_pNextStation) {
             os << m_pNextStation->getItemName();
         }
