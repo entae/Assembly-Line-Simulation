@@ -32,7 +32,7 @@ namespace sdds {
             std::string currToken = util.extractToken(line, pos, more); 
 
             // find current workstation in stations vector
-            auto currWorkstation = std::find_if(stations.begin(), stations.end(), [&currToken](const Workstation* station) {
+            auto currStation = std::find_if(stations.begin(), stations.end(), [&currToken](const Workstation* station) {
                 return station->getItemName() == currToken;
             });
 
@@ -40,14 +40,14 @@ namespace sdds {
             // then next station of currWorkstation is set as next workstation
             if (more) {
                 std::string nextToken = util.extractToken(line, pos, more);
-                auto nextWorkstation = std::find_if(stations.begin(), stations.end(), [&nextToken](const Workstation* station) {
+                auto nextStation = std::find_if(stations.begin(), stations.end(), [&nextToken](const Workstation* station) {
                     return station->getItemName() == nextToken;
                 });
-                (*currWorkstation)->setNextStation(*nextWorkstation);
+                (*currStation)->setNextStation(*nextStation);
             }
 
             // add each workstation to m_activeLine vector
-            m_activeLine.push_back(*currWorkstation);
+            m_activeLine.push_back(*currStation);
         }
 
         // if m_firstStation is still null, link to last station in activeLine
