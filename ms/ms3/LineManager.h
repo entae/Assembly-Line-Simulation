@@ -22,6 +22,7 @@ namespace sdds {
         Workstation* findPredecessor(const std::vector<Workstation*>& stations, const std::vector<Workstation*>::const_iterator currStation);
 
     public:
+        LineManager()=default;
         LineManager(const std::string& file, const std::vector<Workstation*>& stations);
         void reorderStations();
         bool run(std::ostream& os);

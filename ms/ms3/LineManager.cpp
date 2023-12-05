@@ -71,7 +71,7 @@ namespace sdds {
     bool LineManager::run(std::ostream& os) {
         static size_t iteration = 0;
         os << "Line Manager Iteration: " << ++iteration << std::endl;
-        size_t oldCompletedSize = g_completed.size();
+        size_t oldSz = g_completed.size();
         if (!g_pending.empty()) {
             *m_firstStation += std::move(g_pending.front());
             g_pending.pop_front();
@@ -82,10 +82,10 @@ namespace sdds {
         for (auto station : m_activeLine) {
             station->attemptToMoveOrder();
         }
-        size_t completedIteration = g_completed.size() - oldCompletedSize;
+        size_t completedIteration = g_completed.size() - oldSz;
         if (completedIteration > 1) {
             for (size_t i = 0; i < completedIteration / 2; i++) {
-                size_t indexA = oldCompletedSize + i;
+                size_t indexA = oldSz + i;
                 size_t indexB = g_completed.size() - 1 - i;
                 std::swap(g_completed[indexA], g_completed[indexB]);
             }
